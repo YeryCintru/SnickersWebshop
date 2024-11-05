@@ -1,0 +1,9 @@
+header,footer{
+    background: linear-gradient(to right, #5b81ff, #7190f7); /* Degradado de izquierda a derecha */
+    padding: 10px;
+    color: #ffffff; /* Opcional: para cambiar el color del texto */
+}
+main{
+    padding: 10px;
+    background: #d0dbff;
+}
