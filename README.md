@@ -1,22 +1,21 @@
 # SnickersWebshop
 
-Actualizacion: Son todas .php, no .html
-
+La informacion y fotos sobre zapatillas podemos copiarla de https://stockx.com/category/sneakers
 ## PAGES
 
 Javier:
-- Index.html
-- Login.html
-- Register.html
-- ForgotPassword.html
-- HomePage.html
+- Index.php
+- Login.php
+- Register.php
+- ForgotPassword.php
+- HomePage.php
 
 Yeray:
-- AllArticles.html
-- ShoppingCart.html
-- CheckOut.html
-- OrderConfirmed.html
-- OrderEmail.html
+- AllArticles.php
+- ShoppingCart.php
+- CheckOut.php
+- OrderConfirmed.php
+- OrderEmail.php
 
 ## DATABASE
 
