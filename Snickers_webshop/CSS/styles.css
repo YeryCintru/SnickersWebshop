@@ -1,0 +1,37 @@
+header,footer{
+    background: linear-gradient(to right, #5b81ff, #7190f7); /* Degradado de izquierda a derecha */
+    padding: 10px;
+    color: #ffffff; /* Opcional: para cambiar el color del texto */
+}
+.image-container {
+    position: relative; /* Necesario para posicionar el texto */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    overflow: hidden; /* Oculta cualquier contenido desbordado */
+}
+
+.image-container img {
+    width: 100%; /* Imagen ocupa todo el ancho */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.overlay-text {
+    position: absolute; /* Posiciona el texto sobre la imagen */
+    top: 50%; /* Centra verticalmente */
+    left: 20%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta la posición al centro */
+    color: white; /* Color del texto */
+    font-size: 2rem; /* Tamaño del texto, ajusta según necesidad */
+    font-weight: bold; /* Hace el texto más grueso */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor visibilidad */
+    text-align: center; /* Centra el texto si es multilineal */
+}
+main{
+    padding: 10px;
+    background: #d0dbff;
+}
+button.btn {
+    margin-top: 10px; /* Espacio entre el texto y el botón */
+    width: 200px; /* Ajusta este valor para hacer el botón más largo */
+    padding: 10px; /* Espacio interno del botón */
+    float: left;
+}
