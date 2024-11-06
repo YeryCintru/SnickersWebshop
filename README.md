@@ -17,7 +17,7 @@ Yeray:
 - CheckOut.php
 - OrderConfirmed.php
 - OrderEmail.php
-
+- About.php
 ## DATABASE
 
 Login data - date,time,screenResolution,operatingSystem
