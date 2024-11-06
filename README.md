@@ -9,6 +9,7 @@ Javier:
 - Register.php
 - ForgotPassword.php
 - HomePage.php
+- Contact.php
 
 Yeray:
 - AllArticles.php
