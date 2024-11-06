@@ -16,7 +16,7 @@ Javier:
 - Contact.php
 
 Yeray:
-- AllArticles.php
+- AllArticles.php --> solo 3 o 4 articulos en la pagina listados
 - ShoppingCart.php
 - CheckOut.php
 - OrderConfirmed.php
@@ -31,5 +31,4 @@ Users - username,password(encripted),connected??,lastOnline
 Articles – Name, Price, quantity,type(basket,streetWear)
 
 TAREAS
-Logotipo..
-
+Poner margenes, Blog? seo?
