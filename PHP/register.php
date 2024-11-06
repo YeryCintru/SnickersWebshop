@@ -60,6 +60,13 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
+
+            <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <p>Do you have already an account? <a href="index.php">Sign up here</a></p>
+            </div>
+
+        </div>
         </div>
 
 

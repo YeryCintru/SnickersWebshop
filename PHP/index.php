@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 
     <main>
         <div>
@@ -50,7 +50,15 @@
             <div class="col-md-4 text-center">
                 <p>Don't have an account yet? <a href="register.php">Sign up here</a></p>
             </div>
+
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 text-center">
+                <p>Forgot password? <a href="forgotPassword.php">Click here</a></p>
             </div>
+
+        </div>
     </main>
 
 
