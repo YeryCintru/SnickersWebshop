@@ -17,7 +17,7 @@ header,footer{
 .overlay-text {
     position: absolute; /* Posiciona el texto sobre la imagen */
     top: 50%; /* Centra verticalmente */
-    left: 20%; /* Centra horizontalmente */
+    left: var(--overlay-left, 20%); /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta la posición al centro */
     color: white; /* Color del texto */
     font-size: 2rem; /* Tamaño del texto, ajusta según necesidad */

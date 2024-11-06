@@ -36,6 +36,6 @@
 
 </main>
 <?php include 'footer.php'; ?>
-
+<script src="..\JS\bootstrap\js\bootstrap.bundle.min.js"></script>
 </body>
 </html>

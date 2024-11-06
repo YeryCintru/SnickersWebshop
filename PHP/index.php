@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snickers Login</title>
-    <!--Poner foto-->
     <link rel="stylesheet" href="..\CSS\styles.css">
     <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
 </head>
@@ -64,6 +63,7 @@
 
 
     <?php include 'footer.php'; ?>
+    <script src="..\JS\bootstrap\js\bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
