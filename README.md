@@ -1,6 +1,8 @@
 # SnickersWebshop
 NOMBRE--->>UrbanKicks
 
+Todas las imagenes en .jpg
+
 La informacion y fotos sobre zapatillas podemos copiarla de https://stockx.com/category/sneakers
 
 ## PAGES
