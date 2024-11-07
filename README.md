@@ -20,15 +20,25 @@ Yeray:
 - ShoppingCart.php
 - CheckOut.php
 - OrderConfirmed.php
-- OrderEmail.php
+- OrderEmail.php -->email que se manda formateado como html
 - About.php
 ## DATABASE
 
-Login data - date,time,screenResolution,operatingSystem
+TODO EL SQL CREARLO EN ARCHIVOS APARTE .SQL --> 1 de definion de todas las tablas. 1 para cada tabla, de agregar filas
 
-Users - username,password(encripted),connected??,lastOnline
+Login data - date,time,screenResolution,operatingSystem, active(yes,no)
 
-Articles – Name, Price, quantity,type(basket,streetWear)
+Users - username,password(encripted),email, connected??,IDshoppingBasket
+
+articlesOrder - IDarticlesOrder,IDarticle, quantity
+orders - orderID, username, IDarticlesOrder, date_order
+
+shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
+articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
+
+articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
+
+supportTickets- IDticket, username, title
 
 TAREAS
 Poner margenes, Blog? seo?
