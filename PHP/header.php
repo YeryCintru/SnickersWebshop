@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($activePage == 'about') ? 'active' : ''; ?>" href="about.php">About Us</a>
+                    <a class="nav-link <?= ($activePage == 'about') ? 'active' : ''; ?>" href="aboutus.php">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="contact.php">Contact</a>
