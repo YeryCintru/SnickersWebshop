@@ -25,13 +25,15 @@ Yeray:
 ## DATABASE
 
 TODO EL SQL CREARLO EN ARCHIVOS APARTE .SQL --> 1 de definion de todas las tablas. 1 para cada tabla, de agregar filas
+JAVIER
 
 Login data - date,time,screenResolution,operatingSystem, active(yes,no)
-
-Users - username,password(encripted),email, connected??,IDshoppingBasket
+Users - username,password(encripted),email,IDshoppingBasket
 
 articlesOrder - IDarticlesOrder,IDarticle, quantity
 orders - orderID, username, IDarticlesOrder, date_order
+
+YERAY
 
 shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
 articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
