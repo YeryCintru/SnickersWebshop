@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,8 +48,7 @@
 
 
             <?php
-            session_start();
-            require 'db.php';
+            require 'database.php';
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $username = trim($_POST['username']);

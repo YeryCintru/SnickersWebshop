@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snickers Register</title>
-    <!--Poner foto-->
     <link rel="stylesheet" href="..\CSS\styles.css">
     <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
 </head>
@@ -14,11 +16,11 @@
     <main>
         <?php include 'header.php'; ?>
 
-        <div class="row justify-content-center"> <!-- Centrar la fila -->
+        <div class="row justify-content-center"> 
 
             <div>
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-md-7 text-center"> <!-- Añadido text-center -->
+                    <div class="col-md-7 text-center">
                         <h1>Welcome to Snickers Webshop</h1>
                         <p>Register to join this amazing shop!</p>
                     </div>
@@ -69,10 +71,7 @@
                     }
                     return $password;
                 }
-
-
-                session_start();
-                require 'db.php'; // Asegúrate de tener la conexión a la base de datos
+                require 'database.php'; // Asegúrate de tener la conexión a la base de datos
                 $file_target = '..\SQL\users.sql';
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
