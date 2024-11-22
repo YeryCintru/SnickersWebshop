@@ -29,23 +29,17 @@ TODO EL SQL CREARLO EN ARCHIVOS APARTE .SQL --> 1 de definion de todas las tabla
 
 JAVIER
 
-Login data - date,time,screenResolution,operatingSystem, active(yes,no)
-
-Users - username,password(encripted),email,IDshoppingBasket
-
-articlesOrder - IDarticlesOrder,IDarticle, quantity
-
-orders - orderID, username, IDarticlesOrder, date_order
+- Login data - date,time,screenResolution,operatingSystem, active(yes,no)
+- Users - username,password(encripted),email,IDshoppingBasket
+- articlesOrder - IDarticlesOrder,IDarticle, quantity
+- orders - orderID, username, IDarticlesOrder, date_order
 
 YERAY
 
-shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
-
-articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
-
-articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
-
-supportTickets- IDticket, username, title
+- shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
+- articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
+- articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
+- supportTickets- IDticket, username, title
 
 TAREAS
 Poner margenes, Blog? seo?

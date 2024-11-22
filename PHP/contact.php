@@ -254,37 +254,39 @@
         </div>
 
 
-        <div>
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-7 text-center"> <!-- Añadido text-center -->
-                    <h1>Maybe you want write us:)</h1>
-
-                </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-7 text-center"> <!-- Centrado del título -->
+                <h1>Maybe you want to write us :)</h1>
             </div>
         </div>
 
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            required>
+                        <div id="emailHelp" class="form-text">Enter your email address</div>
+                    </div>
 
-        <div class="col-md-4">
-            <form method="POST">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Enter your email address</div>
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleInputProblem1" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="exampleInputProblem1" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="exampleInputProblem1" class="form-label">Problem</label>
-                    <input type="text" class="form-control" id="exampleInputProblem1">
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleInputDescription1" class="form-label">Description</label>
+                        <textarea class="form-control" id="exampleInputDescription1" rows="3" required></textarea>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="exampleInputDescription1" class="form-label">Description</label>
-                    <textarea class="form-control" id="exampleInputDescription1" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
+    </main>
     </main>
 
     <?php include 'footer.php'; ?>
