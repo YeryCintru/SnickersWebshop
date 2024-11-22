@@ -1,7 +1,6 @@
-<!--connect to database>
 <?php
 $host = 'localhost';
-$dbname = 'Urbankicks';
+$dbname = 'urbankicks';
 $username = 'root';
 $password = '';
 
@@ -11,7 +10,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-
+/*
 
 
     //Solo para copiarse la base de datos
@@ -42,7 +41,9 @@ try {
 
 
         }
+            
     }
+        */
 } catch (PDOException $e) {
     die("Error al conectar con la base de datos: " . $e->getMessage());
 }

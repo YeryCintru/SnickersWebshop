@@ -1,7 +1,7 @@
-DROP TABLE `Urbankicks`.`users`
-DROP TABLE `Urbankicks`.`logins`
+DROP TABLE `urbankicks`.`users`
+DROP TABLE `urbankicks`.`logins`
 
-CREATE DATABASE IF NOT EXISTS Urbankicks;
+CREATE DATABASE IF NOT EXISTS urbankicks;
 
 CREATE TABLE IF NOT EXISTS `Urbankicks`.`users` (
     `IDuser` INT NOT NULL AUTO_INCREMENT,
@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS `Urbankicks`.`users` (
     `firstName` VARCHAR(20) NOT NULL,
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `IDshoppingBasket` INT NOT NULL,
+    `IDshoppingBasket` INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (`IDuser`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Urbankicks`.`logins` (
+CREATE TABLE IF NOT EXISTS `urbankicks`.`logins` (
     `IDlogin` INT NOT NULL AUTO_INCREMENT,
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `screenResolution` VARCHAR(10) NOT NULL,

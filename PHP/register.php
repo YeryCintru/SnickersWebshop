@@ -46,13 +46,12 @@ session_start();
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
 
                     <div class="mb-3">
                         <label for="repeatPassword" class="form-label">Repeat Password</label>
-                        <input type="password" class="form-control" id="repeat_password" name="repeat_password"
-                            required>
+                        <input type="password" class="form-control" id="repeat_password" name="repeat_password">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -78,7 +77,7 @@ session_start();
                     $firstName = trim($_POST['first_name']);
                     $lastName = trim($_POST['last_name']);
                     $email = trim($_POST['email']);
-                    $password = trim($password);
+                    $password = trim(generatePassword());
                     //esto no sirve    $password = trim($_POST['password']);
                     //    $repeatPassword = trim($_POST['repeat_password']);
                 
@@ -88,29 +87,33 @@ session_start();
 
                     // Insertar al usuario en la base de datos
                     $stmt = $pdo->prepare('
-            INSERT INTO users (IDuser, username, firstName, lastName, password, IDshoppingBasket)
-            VALUES (:IDuser, :username, :firstName, :lastName, :password, :IDshoppingBasket)
-        ');
+            INSERT INTO users (username, firstName, lastName, password) VALUES (:username, :firstName, :lastName, :password) ');
                     $stmt->execute([
-                        'IDuser' => $userId,  // ID único para el usuario
                         'username' => $email,  // Usar email como el nombre de usuario
                         'firstName' => $firstName,
                         'lastName' => $lastName,
                         'password' => $hashedPassword,
-                        'IDshoppingBasket' => $userId  // Asignar un valor predeterminado para el carrito de compras (puedes cambiarlo si es necesario)
                     ]);
 
-                    if (file_put_contents($file, $insertSQL)) {
-                        echo "La instrucción INSERT se ha guardado correctamente en '$file'.";
+
+                    $query = 'INSERT INTO users (username, firstName, lastName, password) 
+                    VALUES (:username, :firstName, :lastName, :password)';
+
+                    // Reemplaza los valores manualmente en la cadena SQL
+                    $insertSQL = str_replace(
+                        [':username', ':firstName', ':lastName', ':password'],
+                        [$email, $firstName, $lastName, $hashedPassword],
+                        $query
+                    );
+                    if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
+                        echo "La instrucción INSERT se ha guardado correctamente en '$file_target'.";
                     } else {
                         echo "Error al guardar la instrucción INSERT.";
                     }
-                    echo "Usuario registrado correctamente.";
-
 
                     //enviar correo
                 
-                    $to = "javier8javier9@gmail.com";  // Dirección del destinatario
+                    $to = "prueba@gmail.com";  // Dirección del destinatario
                     $subject = "Test HTML Email";  // Asunto del correo
                 
                     // Cuerpo del correo en formato HTML
@@ -121,7 +124,7 @@ session_start();
                     $message .= "</body></html>";
 
                     // Cabeceras para indicar que el contenido es HTML
-                    $headers = "From: javier8javier9@gmail.com\r\n";
+                    $headers = "From: prueba@gmail.com\r\n";
                     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";  // Especificar que el contenido es HTML
                 
                     // Enviar el correo
