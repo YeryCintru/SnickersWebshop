@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UrbanKicks</title>
-    <!--Poner foto-->
     <link rel="stylesheet" href="..\CSS\styles.css">
     <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
 </head>
@@ -13,7 +12,7 @@
 <main>
 
     <div class="image-container">
-        <img src="..\Images\imageHomePage.jpg" alt="Descripción de la imagen">
+        <img src="..\Images\homePage\imageHomePage.jpg" alt="Descripción de la imagen">
         <div class="overlay-text">
             New season! New products!
             <br>
@@ -22,7 +21,7 @@
     </div>
 
     <div class="image-container">
-        <img src="..\Images\basketball.jpg" alt="Descripción de la imagen">
+        <img src="..\Images\homePage\basketball.jpg" alt="Descripción de la imagen">
         <div class="overlay-text" style="--overlay-left: 70%;">
             Basketball season
             <br>
@@ -32,7 +31,7 @@
 
 
     <div class="image-container">
-        <img src="..\Images\streetwear.jpg" alt="Descripción de la imagen">
+        <img src="..\Images\homePage\streetwear.jpg" alt="Descripción de la imagen">
         <div class="overlay-text">
             Go Streetwear!
             <br>

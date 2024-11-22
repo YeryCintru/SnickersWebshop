@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="homePage.php">
-            <img src="../Images/logo.jpg" alt="Snickers Logo" style="width: 200px; height: auto;">
+            <img src="../Images/iconsWebshop\logo.jpg" alt="Snickers Logo" style="width: 200px; height: auto;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

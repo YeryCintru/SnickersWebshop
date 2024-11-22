@@ -1,0 +1,1 @@
+<!--hacer la estructura html del correo enviado>

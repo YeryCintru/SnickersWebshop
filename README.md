@@ -1,4 +1,5 @@
 # SnickersWebshop
+
 NOMBRE--->>UrbanKicks
 
 Todas las imagenes en .jpg y organizarlas en carpetas
@@ -20,22 +21,26 @@ Yeray:
 - ShoppingCart.php
 - CheckOut.php
 - OrderConfirmed.php
-- OrderEmail.php -->email que se manda formateado como html
+- *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
 - About.php
 ## DATABASE
 
 TODO EL SQL CREARLO EN ARCHIVOS APARTE .SQL --> 1 de definion de todas las tablas. 1 para cada tabla, de agregar filas
+
 JAVIER
 
 Login data - date,time,screenResolution,operatingSystem, active(yes,no)
+
 Users - username,password(encripted),email,IDshoppingBasket
 
 articlesOrder - IDarticlesOrder,IDarticle, quantity
+
 orders - orderID, username, IDarticlesOrder, date_order
 
 YERAY
 
 shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
+
 articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
 
 articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 

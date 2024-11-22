@@ -1,3 +1,1 @@
-INSERT INTO `Urbankicks`.`users` (IDuser, username, password, email, IDshoppingBasket) VALUES (1, 'john_doe', '12345', 'john.doe@example.com', 1001);
-
-
+INSERT INTO `Urbankicks`.`users` (username, firstName, lastName, password, IDshoppingBasket) VALUES ('john.doe@example.com', 'javier', 'H', '12345', 1001);
