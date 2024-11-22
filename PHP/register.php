@@ -16,7 +16,7 @@ session_start();
     <main>
         <?php include 'header.php'; ?>
 
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
 
             <div>
                 <div class="row justify-content-center align-items-center">
@@ -97,7 +97,7 @@ session_start();
                         'firstName' => $firstName,
                         'lastName' => $lastName,
                         'password' => $hashedPassword,
-                        'IDshoppingBasket' => userId  // Asignar un valor predeterminado para el carrito de compras (puedes cambiarlo si es necesario)
+                        'IDshoppingBasket' => $userId  // Asignar un valor predeterminado para el carrito de compras (puedes cambiarlo si es necesario)
                     ]);
 
                     if (file_put_contents($file, $insertSQL)) {
