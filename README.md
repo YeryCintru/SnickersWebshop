@@ -41,5 +41,15 @@ YERAY
 - articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
 - supportTickets- IDticket, username, title
 
+
+**Versión actualizada del modelo ER**
+- Users(**IDUser**,Username,Last name,password,email)
+- Article(**IDArticle**,name,price,stock,type,description)
+- Order(**OrderID**,dateOrder,*IDUser*)
+- ArticleUser(*IDArticle*,*IDUser*)
+- OrderArticle(*OrderID*,*IDArticle*)
+
+
+
 TAREAS
 Poner margenes, Blog? seo?

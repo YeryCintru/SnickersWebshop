@@ -3,7 +3,7 @@ DROP TABLE `urbankicks`.`logins`
 
 CREATE DATABASE IF NOT EXISTS urbankicks;
 
-CREATE TABLE IF NOT EXISTS `Urbankicks`.`users` (
+CREATE TABLE IF NOT EXISTS `urbankicks`.`users` (
     `IDuser` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(20) NOT NULL,
     `firstName` VARCHAR(20) NOT NULL,
