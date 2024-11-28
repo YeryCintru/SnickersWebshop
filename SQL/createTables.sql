@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `Urbankicks`.`users` (
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `IDshoppingBasket` INT NOT NULL AUTO_INCREMENT,
+    `2fa` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`IDuser`)
 ) ENGINE = InnoDB;
 
