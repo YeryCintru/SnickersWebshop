@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Forgot Password";
-include 'header.php';
+include 'headImport.php';
 ?>
 <main>
 <div class="container">
@@ -29,6 +29,6 @@ include 'header.php';
     </div>
 
 </main>
-<?php include 'footer.php'; ?>
+<?php include 'footImport.php'; ?>
 </body>
 </html>

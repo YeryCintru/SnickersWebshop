@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Contact";
-include 'header.php';
+include 'headImport.php';
 ?>
     <main>
 
@@ -281,7 +281,7 @@ include 'header.php';
     </main>
     </main>
 
-    <?php include 'footer.php'; ?>
+    <?php include 'footImport.php'; ?>
 </body>
 
 </html>

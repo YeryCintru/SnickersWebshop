@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "About Us";
-include 'header.php';
+include 'headImport.php';
 ?>
 
 <main>
@@ -86,7 +86,7 @@ include 'header.php';
 </main>
 
 
-<?php include 'footer.php'; ?>
+<?php include 'footImport.php'; ?>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Snickers Login";
-include 'header.php';
+include 'headImport.php';
 ?>
     <main>
         <div>
@@ -55,7 +55,7 @@ include 'header.php';
 
 
 
-    <?php include 'footer.php'; ?>
+    <?php include 'footImport.php'; ?>
 </body>
 
 </html>

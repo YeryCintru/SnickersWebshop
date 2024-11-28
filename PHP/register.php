@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Snickers Register";
-include 'header.php';
+include 'headImport.php';
 ?>
 <main>
         <div class="row justify-content-center">
@@ -61,7 +61,7 @@ include 'header.php';
 
 
     </main>
-    <?php include 'footer.php'; ?>
+    <?php include 'footImport.php'; ?>
     <script src="..\JS\validation.js" defer></script>
 </body>
 

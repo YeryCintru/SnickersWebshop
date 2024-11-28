@@ -1,7 +1,7 @@
 <<?php
 session_start();
 $title = "CheckOut";
-include 'header.php';
+include 'headImport.php';
 ?>
 <main>
 <div class="container text-center">
@@ -30,7 +30,7 @@ include 'header.php';
 
 </div>
 
-<?php include 'footer.php';?>
+<?php include 'footImport.php';?>
 
 
 </body>
