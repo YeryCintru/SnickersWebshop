@@ -11,6 +11,7 @@ session_start();
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="..\CSS\styles.css">
     <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
+    <link rel="icon" href="../images/iconsWebshop/favicon.png" type="image/png">
 </head>
 
 <body>

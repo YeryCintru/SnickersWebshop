@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Out</title>
-    <link rel="stylesheet" href="..\CSS\styles.css">
-    <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
-
-</head>
-<body>
-
-<?php include 'header.php';?>
-
-
+<<?php
+session_start();
+$title = "CheckOut";
+include 'header.php';
+?>
+<main>
 <div class="container text-center">
     <div class="row">
 

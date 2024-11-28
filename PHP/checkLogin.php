@@ -1,38 +1,37 @@
 <?php 
 
 require 'database.php';
-//var_dump($_POST)
+// var_dump($_POST)
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Verificar si la contraseña cumple con los requisitos
+    // Check if the password meets the requirements
     if (strlen($password) < 9) {
-        echo "La contraseña debe tener al menos 9 caracteres.<br>";
+        echo "The password must be at least 9 characters long.<br>";
     } elseif (!preg_match('/[A-Z]/', $password)) {
-        echo "La contraseña debe contener al menos una letra mayúscula.<br>";
+        echo "The password must contain at least one uppercase letter.<br>";
     } elseif (!preg_match('/[a-z]/', $password)) {
-        echo "La contraseña debe contener al menos una letra minúscula.<br>";
+        echo "The password must contain at least one lowercase letter.<br>";
     } elseif (!preg_match('/\d/', $password)) {
-        echo "La contraseña debe contener al menos un número.<br>";
+        echo "The password must contain at least one number.<br>";
     } else {
-        // Buscar el usuario en la base de datos
+        // Search for the user in the database
         $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Si las credenciales son válidas, iniciar sesión
-            $_SESSION['user_id'] = $user['IDuser'];  // Utiliza la columna correcta para el ID
+            // If credentials are valid, start a session
+            $_SESSION['user_id'] = $user['IDuser'];  // Use the correct column for the ID
             $_SESSION['username'] = $user['username'];
-            header('Location: homePage.php'); // Redirige a la página principal
+            header('Location: homePage.php'); // Redirect to the main page
             exit;
         } else {
-            echo "Usuario o contraseña incorrectos.<br>";
+            echo "Incorrect username or password.<br>";
         }
     }
 }
-
 
 ?>

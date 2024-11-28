@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All articles</title>
-    <link rel="stylesheet" href="..\CSS\styles.css">
-    <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
-</head>
-<body>
-
-
-<main>
-
-<?php include 'header.php';?>
- 
+<?php
+session_start();
+$title = "AllArticles";
+include 'header.php';
+?>
 <div class="d-flex justify-content-center align-items-center full-height">
             <div class="text-center">
                 <h1><strong>All articles</strong></h1>

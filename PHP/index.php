@@ -34,6 +34,7 @@ include 'header.php';
                 </form>
             </div>
 
+<?include checkLogin.php?>
 
 
         </div>
