@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "security.php";
 $title = "Shopping Cart";
 include 'headImport.php';
 ?>
