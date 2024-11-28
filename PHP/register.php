@@ -156,7 +156,6 @@ session_start();
     </main>
     <?php include 'footer.php'; ?>
     <script src="..\JS\validation.js" defer></script>
-    <script src="..\JS\bootstrap\js\bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
