@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Contact";
-include 'headImport.php';
+include 'dependences/headImport.php';
 ?>
     <main>
 
@@ -279,9 +279,9 @@ include 'headImport.php';
             </div>
         </div>
     </main>
-    </main>
+  
 
-    <?php include 'footImport.php'; ?>
+    <?php include 'dependences/footImport.php'; ?>
 </body>
 
 </html>

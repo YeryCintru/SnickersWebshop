@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Forgot Password";
-include 'headImport.php';
+include 'dependences/headImport.php';
 ?>
 <main>
 <div class="container">
@@ -29,6 +29,6 @@ include 'headImport.php';
     </div>
 
 </main>
-<?php include 'footImport.php'; ?>
+<?php include 'dependences/footImport.php'; ?>
 </body>
 </html>

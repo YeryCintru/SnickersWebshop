@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "AllArticles";
-include 'headImport.php';
+include 'dependences/headImport.php';
 ?>
 <div class="d-flex justify-content-center align-items-center full-height">
             <div class="text-center">
@@ -62,7 +62,7 @@ include 'headImport.php';
 
 
 
-<?php include 'footImport.php'; ?>
+<?php include 'dependences/footImport.php'; ?>
 
 </body>
 </html>

@@ -48,7 +48,7 @@ include 'headImport.php';
 
 
 
-                } ?>
+            
             </div>
 
             <div class="row justify-content-center">
@@ -61,7 +61,7 @@ include 'headImport.php';
 
 
     </main>
-    <?php include 'footImport.php'; ?>
+    <?php include 'dependences/footImport.php'; ?>
     <script src="..\JS\validation.js" defer></script>
 </body>
 

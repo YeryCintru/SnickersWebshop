@@ -60,7 +60,7 @@ include 'headImport.php';
 
 </main>
 
-<?php include 'footImport.php'; ?>
+<?php include 'dependences/footImport.php'; ?>
 
 </body>
 </html>
