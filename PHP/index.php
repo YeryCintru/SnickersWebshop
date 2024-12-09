@@ -34,7 +34,7 @@ include 'dependences_php/headImport.php';
                 </form>
             </div>
 
-<?include "dependences_php/checkLogin.php"; ?>
+<?php include "dependences_php/checkLogin.php"; ?>
 
 
         </div>

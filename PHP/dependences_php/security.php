@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Maximum inactivity time (5 minutes)
 $max_inactivity_time = 5 * 60; // 5 minutes in seconds
