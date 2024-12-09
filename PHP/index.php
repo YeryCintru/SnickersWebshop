@@ -7,7 +7,7 @@ include 'dependences_php/headImport.php';
         <div>
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-7 text-center"> <!-- Añadido text-center -->
-                    <h1>Welcome to Snickers Webshop</h1>
+                    <h1>Welcome to Urbankicks!</h1>
                     <p>Log in to access our exclusive offers</p>
                 </div>
             </div>

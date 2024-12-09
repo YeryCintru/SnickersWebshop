@@ -1,1 +1,3 @@
-INSERT INTO users (username, firstName, lastName, password, 2fa) VALUES (ra2hn3ay2@mozmail.com, AA, A, c8e260458e17d2de541743aa378c4d8cd90da9c8c57b6cb16416628f27f64371f8a9b01fdb49cb642f2af30b3e14dda2d20b4ba2ffdc230a699a68fd15adac9a,aaaaqrfweqf)
+INSERT INTO users (username, firstName, lastName, password) 
+                    VALUES (admin@gmail.com, a, a, 09319fc9020c0e32681dbc5f73b0d3c3f1614bbfc26b8a54e511af3e569b1f69ca27c4b0688c1391afd7bbb508fb2fb449ea96c55724d7ad6693771ad1b90ebc)
+                    

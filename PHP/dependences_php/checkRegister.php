@@ -9,7 +9,7 @@
                     return $password;
                 }
                 require 'database.php'; // Asegúrate de tener la conexión a la base de datos
-                $file_target = '..\SQL\users.sql';
+                $file_target = '..\SQL\insertUsers.sql';
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $firstName = trim($_POST['first_name']);
@@ -35,7 +35,8 @@
 
 
                     $query = 'INSERT INTO users (username, firstName, lastName, password) 
-                    VALUES (:username, :firstName, :lastName, :password)';
+                    VALUES (:username, :firstName, :lastName, :password)
+                    ';
 
                     // Reemplaza los valores manualmente en la cadena SQL
                     $insertSQL = str_replace(

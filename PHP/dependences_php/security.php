@@ -6,7 +6,7 @@ $max_inactivity_time = 5 * 60; // 5 minutes in seconds
 // Check if the user is logged in
 if (!isset($_SESSION['user'])) {
     // If not authenticated, redirect to login
-    header('Location: login.php');
+    header('Location: index.php');
     exit();
 }
 
@@ -15,7 +15,7 @@ if (isset($_SESSION['last_access']) && (time() - $_SESSION['last_access']) > $ma
     // If more than 5 minutes have passed, log out
     session_unset();
     session_destroy();
-    header('Location: login.php'); // Redirect to login
+    header('Location: index.php'); // Redirect to login
     exit();
 }
 
