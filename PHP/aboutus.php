@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "About Us";
-include 'dependences/headImport.php';
+include 'dependences_php/headImport.php';
 ?>
 
 <main>
@@ -86,7 +86,7 @@ include 'dependences/headImport.php';
 </main>
 
 
-<?php include 'dependences/footImport.php'; ?>
+<?php include 'dependences_php/footImport.php'; ?>
 
 </body>
 </html>

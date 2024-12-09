@@ -1,8 +1,8 @@
 <<?php
-include "dependences/security.php";
+include "dependences_php/security.php";
 session_start();
 $title = "CheckOut";
-include 'dependences/headImport.php';
+include 'dependences_php/headImport.php';
 ?>
 <main>
 <div class="container text-center">
@@ -31,7 +31,7 @@ include 'dependences/headImport.php';
 
 </div>
 
-<?php include 'dependences/footImport.php';?>
+<?php include 'dependences_php/footImport.php';?>
 
 
 </body>

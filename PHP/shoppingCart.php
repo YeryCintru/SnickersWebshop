@@ -2,7 +2,7 @@
 session_start();
 include "security.php";
 $title = "Shopping Cart";
-include 'headImport.php';
+include 'dependences_php/headImport.php';
 ?>
 <main>
 
@@ -60,7 +60,7 @@ include 'headImport.php';
 
 </main>
 
-<?php include 'dependences/footImport.php'; ?>
+<?php include 'dependences_php/footImport.php'; ?>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include "dependences/security.php";
+include "dependences_php/security.php";
 $title = "UrbanKicks";
-include 'dependences/headImport.php';
+include 'dependences_php/headImport.php';
 ?>
 <main>
 
@@ -37,7 +37,7 @@ include 'dependences/headImport.php';
 
 
 </main>
-<?php include 'dependences/footImport.php'; ?>
+<?php include 'dependences_php/footImport.php'; ?>
 <body>
 
 </body>

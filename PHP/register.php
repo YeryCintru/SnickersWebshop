@@ -61,7 +61,7 @@ include 'headImport.php';
 
 
     </main>
-    <?php include 'dependences/footImport.php'; ?>
+    <?php include 'dependences_php/footImport.php'; ?>
     <script src="..\JS\validation.js" defer></script>
 </body>
 

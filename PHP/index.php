@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Snickers Login";
-include 'dependences/headImport.php';
+include 'dependences_php/headImport.php';
 ?>
     <main>
         <div>
@@ -34,7 +34,7 @@ include 'dependences/headImport.php';
                 </form>
             </div>
 
-<?include dependences/checkLogin.php?>
+<?include dependences_php/checkLogin.php?>
 
 
         </div>
@@ -55,7 +55,7 @@ include 'dependences/headImport.php';
 
 
 
-    <?php include 'dependences/footImport.php'; ?>
+    <?php include 'dependences_php/footImport.php'; ?>
 </body>
 
 </html>
