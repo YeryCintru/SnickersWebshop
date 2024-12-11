@@ -34,7 +34,8 @@ JAVIER
 - Login data - date,time,screenResolution,operatingSystem, active(yes,no)
 - Users - username,password(encripted),email,IDshoppingBasket
 - supportTickets - IDticket,Name, Description,IDuser
-- peopleConnected- IDuser, 
+- peopleConnected- IDuser,
+
 YERAY
 
 - shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
