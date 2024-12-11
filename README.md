@@ -22,6 +22,7 @@ Yeray:
 - CheckOut.php
 - OrderConfirmed.php
 - *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
+
 - About.php
 ## DATABASE
 
@@ -33,13 +34,12 @@ JAVIER
 - Users - username,password(encripted),email,IDshoppingBasket
 - articlesOrder - IDarticlesOrder,IDarticle, quantity
 - orders - orderID, username, IDarticlesOrder, date_order
-
+- supportTickets - IDticket,Name, Description,IDuser
 YERAY
 
 - shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
 - articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
 - articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
-- supportTickets- IDticket, username, title
 
 TAREAS
 Poner margenes, Blog? seo?

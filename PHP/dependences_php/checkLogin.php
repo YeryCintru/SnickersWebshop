@@ -1,11 +1,12 @@
-<?php 
+<?php
 require 'database.php';
 // var_dump($_POST)
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-
+    $screenResolution = trim($_POST['screenResolution']);
+    $operatingSystem = trim($_POST['operatingSystem']);
     // Check if the password meets the requirements
     if (strlen($password) < 9) {
         echo "The password must be at least 9 characters long.<br>";
@@ -21,10 +22,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && (hash('sha512', data: $password) == $user['password'])) {
             // If credentials are valid, start a session
+            echo '<pre>';
+            var_dump($_POST, $user);
+
+            echo '</pre>';
+            $file_target = "..\SQL\logins.sql";
             $_SESSION['user_id'] = $user['IDuser'];  // Use the correct column for the ID
             $_SESSION['username'] = $user['username'];
+
+            $active = 1;
+            $stmt = $pdo->prepare(
+                query: "INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
+                VALUES (CURRENT_TIMESTAMP, :screenResolution, :operatingSystem, :active, :IDuser)"
+            );
+
+            // Ejecutar la consulta con los valores
+            $stmt->execute([
+                ':screenResolution' => $screenResolution,
+                ':operatingSystem' => $operatingSystem,
+                ':active' => $active,
+                ':IDuser' => $user['IDuser']
+            ]);
+
+            $currentDateTime = date('Y-m-d H:i:s');
+
+            // Definir la consulta SQL con la fecha obtenida en PHP
+            $query = 'INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
+                        VALUES (:currentDateTime, :screenResolution, :operatingSystem, :active, :IDuser);';
+
+            $insertSQL = str_replace(
+                [':currentDateTime', ':screenResolution', ':operatingSystem', ':active', ':IDuser'],
+                [$currentDateTime, $screenResolution, $operatingSystem, $active ? '1' : '0', $user['IDuser']],
+                $query
+            );
+
+            // Guardar la instrucción SQL en el archivo logins.sql
+            if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
+                echo "La instrucción INSERT se ha guardado correctamente en '$file_target'.";
+            } else {
+                echo "Error al guardar la instrucción INSERT.";
+            }
+
             header('Location: homePage.php'); // Redirect to the main page
             exit;
         } else {

@@ -45,6 +45,9 @@
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="contact.php">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="logout.php">        Log out</a>
+                </li>
             </ul>
         </div>
     </div>
