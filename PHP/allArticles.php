@@ -35,7 +35,7 @@ include 'dependences_php/headImport.php';
     <div class="card-body">
     <h5 class="card-title">Air Force</h5>
     <p class="card-text">79.99€</p>
-    <a href="#" class="btn btn-primary">To shoping cart</a>
+    <a href="#" class="btn btn-primary">To shopping cart</a>
   
     </div>
 

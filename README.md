@@ -15,6 +15,7 @@ Javier:
 - ForgotPassword.php
 - HomePage.php
 - Contact.php
+- setPassword.php
 
 Yeray:
 - AllArticles.php --> solo 3 o 4 articulos en la pagina listados
@@ -22,8 +23,8 @@ Yeray:
 - CheckOut.php
 - OrderConfirmed.php
 - *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
-
 - About.php
+
 ## DATABASE
 
 TODO EL SQL CREARLO EN ARCHIVOS APARTE .SQL --> 1 de definion de todas las tablas. 1 para cada tabla, de agregar filas
@@ -32,14 +33,17 @@ JAVIER
 
 - Login data - date,time,screenResolution,operatingSystem, active(yes,no)
 - Users - username,password(encripted),email,IDshoppingBasket
-- articlesOrder - IDarticlesOrder,IDarticle, quantity
-- orders - orderID, username, IDarticlesOrder, date_order
 - supportTickets - IDticket,Name, Description,IDuser
+- peopleConnected- IDuser, 
 YERAY
 
 - shoppingBasket - IDshoppingBasket,IDarticlesShoppingBasket
 - articlesShoppingBasket - IDarticlesShoppingBasket, IDshoppingBasket,IDarticle,quantity
 - articles – IDarticle, Name, Price, quantity, type(basket,streetWear),description 
+- articlesOrder - IDarticlesOrder,IDarticle, quantity
+- orders - orderID, username, IDarticlesOrder, date_order
+
+
 
 TAREAS
-Poner margenes, Blog? seo?
+Poner margenes, Blog? seo?,comentarios codigo español,

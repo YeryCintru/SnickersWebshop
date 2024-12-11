@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el sistema operativo y la resolución de la pantalla
+    // Get the screen resolution (width x height)
     var screenResolution = window.screen.width + 'x' + window.screen.height;
+    
+    // Get the operating system using the getOperatingSystem function
     var operatingSystem = getOperatingSystem();
 
-    // Establecer los valores de los campos ocultos
+    // Set the values of the hidden fields with the screen resolution and operating system
     document.getElementById('screenResolution').value = screenResolution;
     document.getElementById('operatingSystem').value = operatingSystem;
 });
 
-// Función para obtener el sistema operativo
 function getOperatingSystem() {
     var userAgent = navigator.userAgent;
     if (userAgent.includes('Windows NT')) {

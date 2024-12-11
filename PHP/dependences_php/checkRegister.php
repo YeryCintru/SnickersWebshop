@@ -1,34 +1,34 @@
 <?php
 function generatePassword($length = 12)
 {
-    // Definir subconjuntos de caracteres para cumplir con los requisitos
+    // Define character sets to meet the requirements
     $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $lowercase = 'abcdefghijklmnopqrstuvwxyz';
     $numbers = '0123456789';
     $specials = '!@#$%^&*()-_=+';
 
-    // Combinar todos los subconjuntos para el resto de la contraseña
+    // Combine all subsets for the rest of the password
     $allCharacters = $uppercase . $lowercase . $numbers . $specials;
 
-    // Asegurarse de que la contraseña cumpla con los requisitos básicos
+    // Ensure that the password meets the basic requirements
     $password = '';
-    $password .= $uppercase[random_int(0, strlen($uppercase) - 1)]; // Al menos una mayúscula
-    $password .= $lowercase[random_int(0, strlen($lowercase) - 1)]; // Al menos una minúscula
-    $password .= $numbers[random_int(0, strlen($numbers) - 1)];     // Al menos un número
-    $password .= $specials[random_int(0, strlen($specials) - 1)];   // Al menos un caracter especial
+    $password .= $uppercase[random_int(0, strlen($uppercase) - 1)]; // At least one uppercase letter
+    $password .= $lowercase[random_int(0, strlen($lowercase) - 1)]; // At least one lowercase letter
+    $password .= $numbers[random_int(0, strlen($numbers) - 1)];     // At least one number
+    $password .= $specials[random_int(0, strlen($specials) - 1)];   // At least one special character
 
-    // Completar la longitud restante con caracteres aleatorios
+    // Complete the remaining length with random characters
     for ($i = strlen($password); $i < $length; $i++) {
         $password .= $allCharacters[random_int(0, strlen($allCharacters) - 1)];
     }
 
-    // Mezclar los caracteres para evitar un patrón predecible
+    // Shuffle the characters to avoid a predictable pattern
     $password = str_shuffle($password);
 
     return $password;
 }
 
-require 'database.php'; // Asegúrate de tener la conexión a la base de datos
+require 'database.php'; // Make sure to have the database connection
 $file_target = '..\SQL\dependences_php.sql';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastName = trim($_POST['last_name']);
     $email = trim($_POST['email']);
     $password = trim(string: generatePassword());
-    //esto no sirve    $password = trim($_POST['password']);
+    // This does not work    $password = trim($_POST['password']);
     //    $repeatPassword = trim($_POST['repeat_password']);
 
 
-    // Hash de la contraseña usando SHA-512
+    // Hash the password using SHA-512
     $hashedPassword = hash('sha512', $password);
 
-    // Insertar al usuario en la base de datos
+    // Insert the user into the database
     $stmt = $pdo->prepare('
             INSERT INTO users (username, firstName, lastName, password) VALUES (:username, :firstName, :lastName, :password) ');
     $stmt->execute([
-        'username' => $email,  // Usar email como el nombre de usuario
+        'username' => $email,  // Use email as the username
         'firstName' => $firstName,
         'lastName' => $lastName,
         'password' => $hashedPassword,
@@ -58,17 +58,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     VALUES (:username, :firstName, :lastName, :password)
                     ';
 
-    // Reemplaza los valores manualmente en la cadena SQL
+    // Replace values manually in the SQL string
     $insertSQL = str_replace(
         [':username', ':firstName', ':lastName', ':password'],
         [$email, $firstName, $lastName, $hashedPassword],
         $query
     );
     if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
-        echo "La instrucción INSERT se ha guardado correctamente en '$file_target'. Contraseña:'$password'";
+        echo "The INSERT statement has been successfully saved to '$file_target'. Password: '$password'";
 
     } else {
-        echo "Error al guardar la instrucción INSERT.";
+        echo "Error saving the INSERT statement.";
     }
 
 
@@ -76,23 +76,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     
-    //enviar correo
+    // Send email
 
-    $to = "javier8javier9@gmail.com";  // Dirección del destinatario
-    $subject = "Test HTML Email";  // Asunto del correo
+    $to = "javier8javier9@gmail.com";  // Recipient's email address
+    $subject = "Test HTML Email";  // Email subject
 
-    // Cuerpo del correo en formato HTML
+    // Email body in HTML format
     $message = "<html><body>";
     $message .= "<h1>Hello, this is a test email with HTML formatting!</h1>";
     $message .= "<p>This is a <strong>test</strong> email with <em>HTML</em> formatting.</p>";
     $message .= "<p>Best regards,<br>PHP Mailer</p>";
     $message .= "</body></html>";
 
-    // Cabeceras para indicar que el contenido es HTML
+    // Headers to indicate that the content is HTML
     $headers = "From: prueba@gmail.com\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";  // Especificar que el contenido es HTML
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";  // Specify that the content is HTML
 
-    // Enviar el correo
+    // Send the email
     if (mail($to, $subject, $message, $headers)) {
         echo "Email sent successfully!";
     } else {

@@ -7,13 +7,13 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
     const password = document.getElementById('password').value.trim();
     const repeatPassword = document.getElementById('repeat_password').value.trim();
 
-    // Step 1: Validate the username (email)
+    // Validate the username (email)
     if (username.length < 5 || !username.includes('@')) {
         alert('Username must be at least 5 characters long and include "@"');
         return;
     }
 
-    // Step 3: Proceed to submit the form
+    // We proceed to submit the form
     this.submit();
 });
 
