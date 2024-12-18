@@ -41,13 +41,13 @@ include 'dependences_php/headImport.php';
 
     <div class="carousel-inner"  style="border-radius: 15px">
     <div class="carousel-item active">
-    <img src="..\Images\basketball.jpg" class="d-block w-100" alt="...">
+    <img src="..\Images\homePage\basketball.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-    <img src="..\Images\streetwear.jpg" class="d-block w-100" alt="...">
+    <img src="..\Images\homePage\streetwear.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-    <img src="..\Images\imageHomePage.jpg" class="d-block w-100" alt="...">
+    <img src="..\Images\homePage\imageHomePage.jpg" class="d-block w-100" alt="...">
     </div>
 </div>
 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

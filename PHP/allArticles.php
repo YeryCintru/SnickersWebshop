@@ -17,7 +17,7 @@ include 'dependences_php/headImport.php';
   <div class="row">
     
     <div class="card" style="width:200px">
-    <img src="..\Images\AirMaxPlus.png" class="card-img-top" alt="...">
+    <img src="../Images/articles/streetWear/AirMaxPlus.png" class="card-img-top" alt="...">
 
     <div class="card-body" >
     <h5 class="card-title">Air Max Plus</h5>
@@ -30,7 +30,7 @@ include 'dependences_php/headImport.php';
 
 
     <div class="card" style="width:200px">
-    <img src="..\Images\AirForce.png" class="card-img-top" alt="...">
+    <img src="../Images/articles/streetWear/AirForce.png" class="card-img-top" alt="...">
 
     <div class="card-body">
     <h5 class="card-title">Air Force</h5>
@@ -42,7 +42,7 @@ include 'dependences_php/headImport.php';
     </div>
 
     <div class="card" style="width:200px">
-    <img src="..\Images\Converse.jpg" class="card-img-top" alt="...">
+    <img src="../Images/articles/streetWear/Converse.jpg" class="card-img-top" alt="...">
 
     <div class="card-body">
     <h5 class="card-title">Chuck Taylor All Star Embroidered Stars</h5>
