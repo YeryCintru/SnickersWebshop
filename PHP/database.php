@@ -7,12 +7,16 @@ $password = '';
 // Directory path for SQL files
 $carpeta_sql = '..\SQL';
 
+
+
 try {
+
     // Create a new PDO instance to connect to the database
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     
     // Set the PDO error mode to exception, so that PDO throws exceptions on error
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
     /*
 
@@ -45,3 +49,4 @@ try {
     die("Error al conectar con la base de datos: " . $e->getMessage());
 }
 ?>
+
