@@ -1,5 +1,6 @@
 DROP TABLE `urbankicks`.`users`
 DROP TABLE `urbankicks`.`logins`
+DROP TABLE `urbankicks`.`supportTickets`
 
 CREATE DATABASE IF NOT EXISTS urbankicks;
 
@@ -24,3 +25,12 @@ CREATE TABLE IF NOT EXISTS `urbankicks`.`logins` (
     PRIMARY KEY (`IDlogin`),  
     FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `urbankicks`.`supportTickets` (
+    `IDticket` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(255) NOT NULL,
+    `Description` TEXT NOT NULL,
+    `IDuser` INT NOT NULL,
+    PRIMARY KEY (`IDticket`),  
+    FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) 
+)ENGINE = InnoDB;

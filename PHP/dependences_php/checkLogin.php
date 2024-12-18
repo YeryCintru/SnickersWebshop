@@ -1,0 +1,75 @@
+<?php
+require 'database.php';
+// var_dump($_POST)
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $screenResolution = trim($_POST['screenResolution']);
+    $operatingSystem = trim($_POST['operatingSystem']);
+    // Check if the password meets the requirements
+    if (strlen($password) < 9) {
+        echo "The password must be at least 9 characters long.<br>";
+    } elseif (!preg_match('/[A-Z]/', $password)) {
+        echo "The password must contain at least one uppercase letter.<br>";
+    } elseif (!preg_match('/[a-z]/', $password)) {
+        echo "The password must contain at least one lowercase letter.<br>";
+    } elseif (!preg_match('/\d/', $password)) {
+        echo "The password must contain at least one number.<br>";
+    } else {
+        // Search for the user in the database
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && (hash('sha512', $password) == $user['password'])) {
+            // If credentials are valid, start a session
+            echo '<pre>';
+            var_dump($_POST, $user);
+
+            echo '</pre>';
+            $file_target = "..\SQL\logins.sql";
+            $_SESSION['user_id'] = $user['IDuser'];  // Use the correct column for the ID
+            $_SESSION['username'] = $user['username'];
+
+            $active = 1;
+            $stmt = $pdo->prepare(
+                "INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
+                VALUES (CURRENT_TIMESTAMP, :screenResolution, :operatingSystem, :active, :IDuser)"
+            );
+
+            // Execute the query with the values
+            $stmt->execute([
+                ':screenResolution' => $screenResolution,
+                ':operatingSystem' => $operatingSystem,
+                ':active' => $active,
+                ':IDuser' => $user['IDuser']
+            ]);
+
+            $currentDateTime = date('Y-m-d H:i:s');
+
+            // Define the SQL query with the current date and time obtained in PHP
+            $query = 'INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
+                        VALUES (:currentDateTime, :screenResolution, :operatingSystem, :active, :IDuser);';
+
+            $insertSQL = str_replace(
+                [':currentDateTime', ':screenResolution', ':operatingSystem', ':active', ':IDuser'],
+                [$currentDateTime, $screenResolution, $operatingSystem, $active ? '1' : '0', $user['IDuser']],
+                $query
+            );
+
+            // Save the SQL statement in the logins.sql file
+            if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
+                echo "The INSERT statement has been successfully saved to '$file_target'.";
+            } else {
+                echo "Error saving the INSERT statement.";
+            }
+
+            header('Location: homePage.php'); // Redirect to the main page
+            exit;
+        } else {
+            echo "Incorrect username or password.<br>";
+        }
+    }
+}
+?>

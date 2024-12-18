@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "AllArticles";
-include 'header.php';
+include 'dependences_php/headImport.php';
 ?>
 <div class="d-flex justify-content-center align-items-center full-height">
             <div class="text-center">
@@ -35,7 +35,7 @@ include 'header.php';
     <div class="card-body">
     <h5 class="card-title">Air Force</h5>
     <p class="card-text">79.99€</p>
-    <a href="#" class="btn btn-primary">To shoping cart</a>
+    <a href="#" class="btn btn-primary">To shopping cart</a>
   
     </div>
 
@@ -62,7 +62,7 @@ include 'header.php';
 
 
 
-<?php include 'footer.php'; ?>
+<?php include 'dependences_php/footImport.php'; ?>
 
 </body>
 </html>

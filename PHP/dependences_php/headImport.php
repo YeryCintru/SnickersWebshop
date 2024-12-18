@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +10,6 @@ session_start();
     <link rel="stylesheet" href="..\CSS\bootstrap\css\bootstrap.min.css">
     <link rel="icon" href="../images/iconsWebshop/favicon.png" type="image/png">
 </head>
-
 <body>
 
 <header>
@@ -48,6 +44,9 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="contact.php">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="logout.php">        Log out</a>
                 </li>
             </ul>
         </div>
