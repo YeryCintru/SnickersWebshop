@@ -48,6 +48,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="shoppingCart.php">
                         <img src="../Images/iconsWebShop/shoppingcart.png" style="width: 30px;height: 30px" alt="Shopping cart">
+                        <span class="badge badge-light"><?php echo $_SESSION['cart']?></span>
                     </a>
                 </li>
                 <li class="nav-item">

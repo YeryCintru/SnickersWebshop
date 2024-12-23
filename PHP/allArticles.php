@@ -4,6 +4,13 @@ $title = "AllArticles";
 include 'dependences_php/headImport.php';
 include 'database.php';
 
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = 0;
+}
+
+
+
+
 
 function getInfoArticles($pdo){
 
@@ -55,34 +62,77 @@ $articles = getInfoArticles($pdo);
                 <p class="card-text"><?php echo htmlspecialchars($article['price']); ?>€</p>
 
                 
-                <div class="container text-center" style="width:150px;padding:0px;margin:0px" >
+                <div class="container text-center" style="width:150px;padding:0;margin:0;">
+                <div class="row align-items-center g-0"> <!-- 'g-0' elimina espacios entre columnas -->
+            
+                <!-- Botón disminuir -->
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="btn btn-outline-secondary p-0" style="width:30px;height:30px;" type="button" id="decrease-<?php echo  $article['idarticle']?>">-</button>
+            </div>
 
-                <div class="row align-items-start" style="padding:0px;margin:0px">
 
-                <div class="col" style="padding:0px;margin:0px">
-                <button class="btn btn-outline-secondary" style="width:30px;height:30px;display: flex;align-items: center" type="button" id="decrease">-</button>
-                </div>
-                    
-                <div class="col" style="padding:0px;margin:0px">
-                <input class="form-control text-center" type="number" style="width:50px"  value="1" min="1" id="quantityInput">
-                </div>
-                
-                <div class="col" style="padding:0px;margin:0px">
-                <button class="btn btn-outline-secondary" style="width:30px;height:30px;display: flex;align-items: center" type="button" id="increase">+</button>
-        
-                </div>
-                
-                </div>
+            <!-- Input -->
+            <div class="col d-flex justify-content-center align-items-center" style="padding:0px">
+                <input type="number"  style="width:40px;height:30px;border-radius:5px;text-align:center;"  value="0" min="0" id="quantityInput-<?php echo  $article['idarticle']?>">
+            </div>
 
+
+            <!-- Botón aumentar -->
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="btn btn-outline-secondary p-0" style="width:30px;height:30px;" type="button" id="increase-<?php echo  $article['idarticle']?>">+</button>
                 </div>
+             </div>
+         </div>
+
 
 
                 <br>
-                <a href="#" class="btn btn-primary">To shopping cart</a>
-
-                
+                <a href="#" class="btn btn-primary" id="toCart-<?php echo  $article['idarticle']?>">To shopping cart</a>    
                 </div>
             </div>
+
+            <script>
+                    const decrease<?php echo $article['idarticle']?> = document.getElementById('decrease-<?php echo  $article['idarticle']?>');
+                    const increase<?php echo $article['idarticle']?> = document.getElementById('increase-<?php echo  $article['idarticle']?>');
+                    const number<?php echo  $article['idarticle']?> = document.getElementById('quantityInput-<?php echo  $article['idarticle']?>');
+                    const toCart<?php echo  $article['idarticle']?> = document.getElementById('toCart-<?php echo  $article['idarticle']?>');
+
+                    /**
+                     * function to decrease when clicking
+                     */
+
+                     decrease<?php echo  $article['idarticle']?>.addEventListener('click',() => {
+                        let value = parseInt(number<?php echo  $article['idarticle']?>.value);
+                        if(value > 0){
+                        number<?php echo  $article['idarticle']?>.value = value - 1;
+                        <?php $_SESSION['cart'] = $_SESSION['cart'] - 1;?>
+                        }
+                       
+                     });
+
+
+                     /**
+                      * Event listener to increase
+                      */
+                     increase<?php echo  $article['idarticle']?>.addEventListener('click',() => {
+                        let value = parseInt(number<?php echo  $article['idarticle']?>.value);
+                        number<?php echo  $article['idarticle']?>.value = value + 1;
+                        <?php $_SESSION['cart'] = $_SESSION['cart'] + 1;
+                             echo $_SESSION['cart'];
+                        ?>;
+                     });
+
+
+                     /**
+                      * 
+                      */
+
+                      toCart-<?php echo  $article['idarticle']?>.addEventListener('click',() =>{
+                        
+                      })
+
+
+            </script>
         <?php endforeach; ?>
 
 
@@ -91,6 +141,10 @@ $articles = getInfoArticles($pdo);
 
 
 </main>
+
+
+
+
 
 
 

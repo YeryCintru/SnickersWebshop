@@ -8,6 +8,12 @@ if (isset($_SESSION['user_id'])) {
     header('Location: homePage.php'); 
     exit();
 }
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = 0;
+}
+
+
 ?>
 
     <main>
