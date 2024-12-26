@@ -4,14 +4,6 @@ $title = "AllArticles";
 include 'dependences_php/headImport.php';
 include 'database.php';
 
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = 0;
-}
-
-
-
-
-
 function getInfoArticles($pdo){
 
         // Query to fetch all items from the articles table
@@ -34,6 +26,7 @@ $articles = getInfoArticles($pdo);
 
 
 ?>
+
 
 <main>
 
@@ -92,10 +85,10 @@ $articles = getInfoArticles($pdo);
             </div>
 
             <script>
-                    const decrease<?php echo $article['idarticle']?> = document.getElementById('decrease-<?php echo  $article['idarticle']?>');
-                    const increase<?php echo $article['idarticle']?> = document.getElementById('increase-<?php echo  $article['idarticle']?>');
-                    const number<?php echo  $article['idarticle']?> = document.getElementById('quantityInput-<?php echo  $article['idarticle']?>');
-                    const toCart<?php echo  $article['idarticle']?> = document.getElementById('toCart-<?php echo  $article['idarticle']?>');
+                const decrease<?php echo $article['idarticle']?> = document.getElementById('decrease-<?php echo  $article['idarticle']?>');
+                const increase<?php echo $article['idarticle']?> = document.getElementById('increase-<?php echo  $article['idarticle']?>');
+                const number<?php echo  $article['idarticle']?> = document.getElementById('quantityInput-<?php echo  $article['idarticle']?>');
+                  
 
                     /**
                      * function to decrease when clicking
@@ -104,10 +97,8 @@ $articles = getInfoArticles($pdo);
                      decrease<?php echo  $article['idarticle']?>.addEventListener('click',() => {
                         let value = parseInt(number<?php echo  $article['idarticle']?>.value);
                         if(value > 0){
-                        number<?php echo  $article['idarticle']?>.value = value - 1;
-                        <?php $_SESSION['cart'] = $_SESSION['cart'] - 1;?>
-                        }
-                       
+                        number<?php echo  $article['idarticle']?>.value = value - 1;  
+                        }         
                      });
 
 
@@ -117,20 +108,30 @@ $articles = getInfoArticles($pdo);
                      increase<?php echo  $article['idarticle']?>.addEventListener('click',() => {
                         let value = parseInt(number<?php echo  $article['idarticle']?>.value);
                         number<?php echo  $article['idarticle']?>.value = value + 1;
-                        <?php $_SESSION['cart'] = $_SESSION['cart'] + 1;
-                             echo $_SESSION['cart'];
-                        ?>;
                      });
 
 
-                     /**
-                      * 
-                      */
+                document.addEventListener('DOMContentLoaded', function () {
+                const toCart<?php echo  $article['idarticle']?> = document.getElementById('toCart-<?php echo  $article['idarticle']?>');
 
-                      toCart-<?php echo  $article['idarticle']?>.addEventListener('click',() =>{
-                        
-                      })
+                toCart<?php echo  $article['idarticle']?>.addEventListener('click', function () {
+                // Solicitud AJAX
+                fetch('dependences_php/updateCart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'action=updateCart&amount='+ number<?php echo  $article['idarticle']?>.value
+                    })
+                .then(response => response.json())
+                .then(data => {
+                    // Aquí actualizamos el valor del carrito en el otro archivo
+                    document.getElementById('cartCount').innerHTML = data.cartCount;
+                })
+                .catch(error => console.error('Error:', error));
+            });
 
+        });
 
             </script>
         <?php endforeach; ?>
