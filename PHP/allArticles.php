@@ -121,7 +121,7 @@ $articles = getInfoArticles($pdo);
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: 'action=updateCart&amount='+ number<?php echo  $article['idarticle']?>.value
+                    body: 'action=updateCart&amount='+ number<?php echo  $article['idarticle']?>.value + '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>
                     })
                 .then(response => response.json())
                 .then(data => {

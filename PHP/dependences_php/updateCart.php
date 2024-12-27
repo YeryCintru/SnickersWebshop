@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../database.php';
 
 // Asegúrate de devolver solo JSON
 header('Content-Type: application/json');
@@ -11,6 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateCart') 
     }
 
     $_SESSION['cart'] += $_POST['amount'];
+
+
+    //Code for the database integration
+
+    $_SESSION['user_id'] = 3;
+
+    $amount = $_POST['amount'];
+    $userId = $_SESSION['user_id'];
+    $articleId = $_POST['articleid']; 
+
+    $stmt = $pdo->prepare('INSERT INTO userarticle (quantity,IDuser,idarticle) VALUES (?,?,?)');
+    $stmt->execute([$amount,$userId,$articleId]);
+    
 
     // Devolver solo el JSON necesario
     echo json_encode(['cartCount' => $_SESSION['cart']]);
