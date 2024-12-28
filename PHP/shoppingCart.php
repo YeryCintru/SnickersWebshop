@@ -1,9 +1,11 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $title = "Shopping Cart";
 include 'dependences_php/headImport.php';
 
-
+$_SESSION['totalPrice'] = 0;
 
 include 'database.php';
 
@@ -66,6 +68,7 @@ $newQuantity = 0;
 
             <?php 
                 $totalPrice +=  $article['price'] * $article['quantity'];
+                $_SESSION['totalPrice'] +=  $article['price'] * $article['quantity'];
             ?>
 
             <tr>
@@ -102,7 +105,7 @@ $newQuantity = 0;
             </td>
 
             <td> 
-                <p><?php echo $article['quantity']?> x <?php echo $article['price']?> = <?php echo ($article['price'] * $article['quantity'])?>€</p>
+                <p id="totalPrice-<?php echo  $article['idarticle']?>"><?php echo $article['quantity']?> x <?php echo $article['price']?> = <?php echo ($article['price'] * $article['quantity'])?>€</p>
             </td>
 
             </tr>
@@ -127,19 +130,29 @@ $newQuantity = 0;
                         let value = parseInt(number<?php echo  $article['idarticle']?>.value);
                         if(value > 0){
                         number<?php echo  $article['idarticle']?>.value = value - 1;  
-                        }
                         
-                        // 
-                        //     // Query to fetch all items from the articles table
-                        //     $newQuantity = $article['quantity'] - 1;
-                        //     $stmt = $pdo->prepare("UPDATE userarticle SET quantity = $newQuantity WHERE idarticle = $article['idarticle']");
-                        //     $stmt = $pdo->query($query);
+                        
+                        fetch('dependences_php/updateCart.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: 'action=modifyItem&amount=-1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>
+                            })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Aquí actualizamos el valor del carrito en el otro archivo
+                            document.getElementById('cartCount').innerHTML = data.cartCount;
+                            document.getElementById('finalPrice').innerHTML = data.totalPrice + ' €';
 
-                        //     // Fetch all results as an associative array
-                        //     $articlesUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            
+                           
+                            document.getElementById('totalPrice-<?php echo  $article['idarticle']?>').innerHTML = data.amountArticle + ' x ' + <?php echo $article['price']?> + '=' + (<?php echo $article['price'] ?> * data.amountArticle)  + '€';
 
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }                        
 
-                        // 
                      });
 
 
@@ -149,6 +162,28 @@ $newQuantity = 0;
                      increase<?php echo  $article['idarticle']?>.addEventListener('click',() => {
                         let value = parseInt(number<?php echo  $article['idarticle']?>.value);
                         number<?php echo  $article['idarticle']?>.value = value + 1;
+
+                        fetch('dependences_php/updateCart.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: 'action=modifyItem&amount=1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>
+                            })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Aquí actualizamos el valor del carrito en el otro archivo
+                            document.getElementById('cartCount').innerHTML = data.cartCount;
+
+                            document.getElementById('finalPrice').innerHTML = data.totalPrice + ' €';
+
+                            
+
+                            document.getElementById('totalPrice-<?php echo  $article['idarticle']?>').innerHTML = data.amountArticle + ' x ' + <?php echo $article['price']?> + '=' + (<?php echo $article['price'] ?> * data.amountArticle)  + '€';
+
+                        })
+                        .catch(error => console.error('Error:', error));
+                        
                      });
 
 
@@ -174,24 +209,15 @@ $newQuantity = 0;
             <th class="right-align">Monto</th>
         </tr>
 
-        <tr>
+        <tr class="table-light">
             <td>Subtotal</td>
-            <td class="right-align"><?php echo $totalPrice?>s€</td>
+            <td class="right-align" id="finalPrice"><?php echo $totalPrice?> €</td>
         </tr>
-        <tr>
-            <td>Shipment</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
-        <tr>
-            <td>IVA Included</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
-        <tr class="table-dark">
-            <td>Estimated total amount</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
+    
 
         </table>
+
+        <a href="checkOut.php" class="btn btn-primary" id="toOrder">To order</a> 
 
         </div>
 

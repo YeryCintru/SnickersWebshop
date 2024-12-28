@@ -13,6 +13,9 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = 0;
 }
 
+if (!isset($_SESSION['totalPrice'])) {
+    $_SESSION['totalPrice'] = 0;
+}
 
 ?>
 

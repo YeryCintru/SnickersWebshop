@@ -16,6 +16,8 @@ function getInfoArticles($pdo){
         return $articles;
 }
 
+$user = $_SESSION['user_id'];
+
 function removeSpaces($str) {
     return str_replace(' ', '', $str);  // Replace spaces with an empty string
 }
