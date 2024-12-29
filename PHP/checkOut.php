@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,102 +9,134 @@ include 'dependences_php/headImport.php';
 if (!isset($_SESSION['totalPrice'])) {
     $_SESSION['totalPrice'] = 0;
 }
-
-
 ?>
-
 
 <main>
 <div class="container text-center">
-    
     <h1>Order check out</h1>
-<div class="row">
+    <form id="deliveryForm" method="POST" action="thankyou.php">
+        <div class="row">
 
-        <div class="col">
+            <!-- Shipment Method -->
+            <div class="col">
+                <h3>Select shipment method</h3>
+                <div class="form-check" style="border: 2px solid gray; border-radius: 15px; padding: 10px;">
+                    <!-- Option 1 -->
+                    <input class="form-check-input" type="radio" name="shippingMethod" id="pdpMethod" value="2.99" required>
+                    <label class="form-check-label" for="pdpMethod">
+                        PDP method - 2.99€
+                    </label>
+                    <br>
 
-        <h3>Select shipment method</h3>
+                    <!-- Option 2 -->
+                    <input class="form-check-input" type="radio" name="shippingMethod" id="dhlMethod" value="22.99">
+                    <label class="form-check-label" for="dhlMethod">
+                        DHL method - 22.99€
+                    </label>
+                    <br>
 
+                    <!-- Option 3 -->
+                    <input class="form-check-input" type="radio" name="shippingMethod" id="dhlExpressMethod" value="44.00">
+                    <label class="form-check-label" for="dhlExpressMethod">
+                        DHL express method - 44.00€
+                    </label>
+                    <br>
+                </div>
+                <br>
 
-        <div style="border: 2px solid gray;border-radius:15px;padding:10px">
-            <div class="form-check">
-
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-                PDP method-2.99€
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-                DHL method-22.99€
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-                DHL express method-+44€
-            </label>
-            </div>
-
-            </div>
-
-            <br>
-
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
+                <!-- Checkbox -->
+                <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                <label class="form-check-label" for="termsCheckbox">
                     I have read and accepted the data protection and privacy policies
                 </label>
+                <br><br>
             </div>
 
+            <!-- Order Overview -->
+            <div class="col">
+                <h5>Order overview</h5>
+                <table class="table">
+                    <tr>
+                        <th>Concept</th>
+                        <th class="right-align">Amount</th>
+                    </tr>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td class="right-align" id="finalPrice"> <?php echo $_SESSION['totalPrice']?> €</td>
+                    </tr>
+                    <tr>
+                        <td>Shipment</td>
+                        <td class="right-align" id="shippingCost">0.00 €</td>
+                    </tr>
+                    <tr>
+                        <td>IVA Included</td>
+                        <td class="right-align">0.00 €</td>
+                    </tr>
+                    <tr class="table-dark">
+                        <td>Estimated total amount</td>
+                        <td class="right-align" id="totalAmount"> <?php echo $_SESSION['totalPrice']?> €</td>
+                    </tr>
+                </table>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" id="toOrder">Pay</button>
+                <br>
+                <br>
+
+            </div>
         </div>
-
-        <div class="col">
-
-     
-        <h5>Order overview</h5>
-        <table class="table">
-        <tr>
-            <th>Concept</th>
-            <th class="right-align">Monto</th>
-        </tr>
-
-        <tr>
-            <td>Subtotal</td>
-            <td class="right-align" id="finalPrice"> <?php echo $_SESSION['totalPrice']?> €</td>
-        </tr>
-        <tr>
-            <td>Shipment</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
-        <tr>
-            <td>IVA Included</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
-        <tr class="table-dark">
-            <td>Estimated total amount</td>
-            <td class="right-align">0.00 €</td>
-        </tr>
-
-        </table>
-
-        <a href="checkOut.php" class="btn btn-primary" id="toOrder">Pay</a> 
-
-        <br>
-        <br>
-
-        </div>
-
-
-
-    </div>
-
-
-
+    </form>
 </div>
 
 <?php include 'dependences_php/footImport.php';?>
+</main>
+
+<script>
+    // Update shipping cost and total amount dynamically
+    const shippingMethods = document.querySelectorAll('input[name="shippingMethod"]');
+    const finalPrice = parseFloat(<?php echo $_SESSION['totalPrice']; ?>);
+    const shippingCostElement = document.getElementById('shippingCost');
+    const totalAmountElement = document.getElementById('totalAmount');
+
+    shippingMethods.forEach(method => {
+        method.addEventListener('change', function () {
+            const shippingCost = parseFloat(this.value);
+            const totalAmount = finalPrice + shippingCost;
+
+            // Update values in the table
+            shippingCostElement.textContent = shippingCost.toFixed(2) + " €";
+            totalAmountElement.textContent = totalAmount.toFixed(2) + " €";
+        });
+    });
+
+    document.getElementById('deliveryForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form from submitting traditionally
+
+    // Collect form data
+    const formData = new FormData(this); // Captures all form fields
+
+    // Send AJAX request
+    fetch('create_order.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Expecting JSON response
+    .then(data => {
+        if (data.success) {
+            alert('Order created successfully!');
+            window.location.href = 'thankyou.php'; // Redirect if needed
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your order.');
+    });
+});
 
 
+
+</script>
 </body>
 </html>

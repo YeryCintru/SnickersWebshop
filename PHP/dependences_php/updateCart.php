@@ -5,6 +5,7 @@ include '../database.php';
 // Asegúrate de devolver solo JSON
 header('Content-Type: application/json');
 
+
 // Incrementar el contador del carrito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateCart') {
     if (!isset($_SESSION['cart'])) {
@@ -20,13 +21,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateCart') 
     $userId = $_SESSION['user_id'];
     $articleId = $_POST['articleid']; 
 
+    //Verify that the article is not yet in the basket
+
+    $stmt = $pdo->prepare('SELECT * FROM userarticle WHERE IDuser = ? AND idarticle = ?');
+    $stmt->execute([$userId, $articleId]);
+    $row = $stmt->fetch();
+
+    if($row){
+
+        
+        $stmt = $pdo->prepare('UPDATE userarticle SET quantity = quantity + ? WHERE IDuser = ? AND idarticle = ?');
+        $stmt->execute([$amount,$userId,$articleId]);
+    
+
+
+    }else{
+
     $stmt = $pdo->prepare('INSERT INTO userarticle (quantity,IDuser,idarticle) VALUES (?,?,?)');
     $stmt->execute([$amount,$userId,$articleId]);
     
+    }
+    
+
     // Devolver solo el JSON necesario
     echo json_encode(['cartCount' => $_SESSION['cart']]);
     exit; // Termina el script para no agregar HTML accidentalmente
+
 }
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'modifyItem') {
