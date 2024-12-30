@@ -114,20 +114,17 @@ if (!isset($_SESSION['totalPrice'])) {
 
     // Collect form data
     const formData = new FormData(this); // Captures all form fields
+    formData.append('action', 'createOrder'); // Adds 'action=createOrder'
 
     // Send AJAX request
-    fetch('create_order.php', {
+    fetch('dependences_php/createOrder.php', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json()) // Expecting JSON response
     .then(data => {
-        if (data.success) {
-            alert('Order created successfully!');
+            
             window.location.href = 'thankyou.php'; // Redirect if needed
-        } else {
-            alert('Error: ' + data.message);
-        }
     })
     .catch(error => {
         console.error('Error:', error);

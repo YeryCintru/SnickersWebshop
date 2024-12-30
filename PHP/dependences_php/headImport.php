@@ -1,4 +1,3 @@
-
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -14,7 +13,11 @@ if (!isset($_SESSION['cart'])) {
 
 $_SESSION['user_id'] = 1;
 
+if (isset($_SESSION['user_id'])){
+$_SESSION['user_id'] = 1;
 $user = $_SESSION['user_id'];
+
+
 
 function getNumArticles($pdo,$user){
 
@@ -39,6 +42,8 @@ foreach ($articlesUser as $article):
 endforeach;
 
 $_SESSION['cart'] = $totalArticles;
+
+}
 
 ?>
 
@@ -89,14 +94,20 @@ $_SESSION['cart'] = $totalArticles;
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="contact.php">Contact</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="shoppingCart.php">
                         <img src="../Images/iconsWebShop/shoppingcart.png" style="width: 30px;height: 30px" alt="Shopping cart">
                         <span class="badge badge-light" id="cartCount"><?php echo $_SESSION['cart']?></span>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="logout.php">        Log out</a>
+                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="myOrders.php">My orders</a>
+                </li>
+              
+                <li class="nav-item">
+                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="logout.php">Log out</a>
                 </li>
                
             </ul>

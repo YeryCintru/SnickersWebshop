@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 $title = "Snickers Login";
 include 'dependences_php/headImport.php';
 include "dependences_php/checkLogin.php";
@@ -7,6 +9,8 @@ include "dependences_php/checkLogin.php";
 if (isset($_SESSION['user_id'])) {
     header('Location: homePage.php'); 
     exit();
+}else{
+    $_SESSION['user_id'] = null;
 }
 
 if (!isset($_SESSION['cart'])) {
