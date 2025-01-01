@@ -51,7 +51,7 @@ $newQuantity = 0;
 <div class="container text-center">
     <div class="row">
 
-        <div class="col">
+        <div class="col" id="tableContent">
 
         <h3><strong>Your cart:</strong></h3>
 
@@ -129,7 +129,7 @@ $newQuantity = 0;
 
                      decrease<?php echo  $article['idarticle']?>.addEventListener('click',() => {
                         let value = parseInt(number<?php echo  $article['idarticle']?>.value);
-                        if(value > 0){
+                        if(value >= 0){
                         number<?php echo  $article['idarticle']?>.value = value - 1;  
                         
                         
@@ -138,17 +138,18 @@ $newQuantity = 0;
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
                             },
-                            body: 'action=modifyItem&amount=-1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>
+                            body: 'action=modifyItem&amount=-1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?> +'&currentAmount=' + <?php echo $article['quantity']; ?>
                             })
                         .then(response => response.json())
                         .then(data => {
                             // Aquí actualizamos el valor del carrito en el otro archivo
                             document.getElementById('cartCount').innerHTML = data.cartCount;
                             document.getElementById('finalPrice').innerHTML = data.totalPrice + ' €';
-
-                            
-                           
                             document.getElementById('totalPrice-<?php echo  $article['idarticle']?>').innerHTML = data.amountArticle + ' x ' + <?php echo $article['price']?> + '=' + (<?php echo $article['price'] ?> * data.amountArticle)  + '€';
+
+
+                            location.reload();
+                            
 
                         })
                         .catch(error => console.error('Error:', error));
@@ -169,7 +170,7 @@ $newQuantity = 0;
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
                             },
-                            body: 'action=modifyItem&amount=1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>
+                            body: 'action=modifyItem&amount=1'+ '&articleid=' + <?php echo htmlspecialchars($article['idarticle']); ?>+'&currentAmount=' + <?php echo $article['quantity']; ?>
                             })
                         .then(response => response.json())
                         .then(data => {
@@ -181,6 +182,7 @@ $newQuantity = 0;
                             
 
                             document.getElementById('totalPrice-<?php echo  $article['idarticle']?>').innerHTML = data.amountArticle + ' x ' + <?php echo $article['price']?> + '=' + (<?php echo $article['price'] ?> * data.amountArticle)  + '€';
+                            location.reload();
 
                         })
                         .catch(error => console.error('Error:', error));
