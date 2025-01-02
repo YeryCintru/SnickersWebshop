@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'createOrder'){
         $stmt->execute([$article['quantity'],$orderId,$article['idarticle']]);
         }
 
-    echo json_encode(['cartCount' => 0]);
+    echo json_encode(['orderId' => $orderId]);
     exit; // Termina el script para no agregar HTML accidentalmente
 
 }
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'orderAgain'){
         $stmt->execute([$orderId2,$orderId]);
         
 
-    echo json_encode(['cartCount' => 0]);
+    echo json_encode(['orderId' => $orderId]);
     exit; // Termina el script para no agregar HTML accidentalmente
 
 }

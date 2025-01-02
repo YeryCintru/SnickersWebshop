@@ -124,14 +124,29 @@ if (!isset($_SESSION['totalPrice'])) {
     .then(response => response.json()) // Expecting JSON response
     .then(data => {
             
-            window.location.href = 'thankyou.php'; // Redirect if needed
+        const params = new URLSearchParams();
+        params.append('action', 'sendEmail');
+        params.append('orderid', data.orderId);
+
+            
+            return fetch('orderMail.php', {
+            method: 'POST',
+            body: params
+        });
+    })
+    .then(response => response.json()) // Handle second response (sending email)
+    .then(data => {
+        if (!data.status == "success") {
+            throw new Error('Email sending failed');
+        }
+
+        window.location.href = 'thankyou.php'; // Redirect if all is successful
     })
     .catch(error => {
         console.error('Error:', error);
         alert('An error occurred while processing your order.');
     });
 });
-
 
 
 </script>

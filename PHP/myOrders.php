@@ -12,6 +12,22 @@ include 'database.php';
 
 $user = $_SESSION['user_id'];
 
+function getShipmentMethod($price){
+    switch($price){
+      case 3:
+        return "DPD method - 2.99€";
+        break;
+
+      case 23:
+        return "DHL method - 22.99€";
+      break;
+
+      case 44:
+        return "DHL express method - 44.00€";
+      break;
+    }
+  }
+
 function getInfoOrders($pdo,$user){
 
         // Query to fetch all items from the articles table
