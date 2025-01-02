@@ -16,14 +16,32 @@ Javier:
 - HomePage.php
 - Contact.php
 - setPassword.php
+- - *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
 
 Yeray:
 - AllArticles.php --> solo 3 o 4 articulos en la pagina listados
 - ShoppingCart.php
 - CheckOut.php
 - OrderConfirmed.php
-- *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
 - About.php
+
+## Requirements
+
+YERAY:
+
+- 9. Article Overview
+- 11. Navigation bar
+- 12. Shopping cart
+- 13. Order Check-out
+- 14. Confirmation by e-mail
+- 15. Overview of purchased items
+ 
+JAVIER:
+
+
+GENERALES DE LA PÁGINA
+
+
 
 ## DATABASE
 
@@ -45,6 +63,7 @@ YERAY
 - orders - orderID, username, IDarticlesOrder, date_order
 
 
+## Base de datos
 
 
 **Versión actualizada del modelo ER**
@@ -56,5 +75,5 @@ YERAY
 
 
 
-TAREAS
+## TAREAS
 Poner margenes, Blog? seo?,comentarios codigo español,
