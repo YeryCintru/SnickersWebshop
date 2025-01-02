@@ -64,6 +64,7 @@ function removeSpaces($str) {
 $articlesOrder = getInfoOrders($pdo,$user);
 $imageURI = "../Images/articles/streetWear/";
 $totalPrice = 0;
+$shipment = 0;
 ?>
 
 
@@ -93,11 +94,11 @@ $totalPrice = 0;
   
     <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $order['idorder']; ?>" aria-expanded="true" aria-controls="collapseOne">
       Order: <?php echo $order['idorder'] ?>
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+    <div id="collapse<?php echo $order['idorder']; ?>" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
       <div class="accordion-body">
               <?php  
               
@@ -106,6 +107,7 @@ $totalPrice = 0;
               foreach($articleOrder as $article):
 
                 $totalPrice += $article['price'] * $article['quantity'];
+                
 
                 ?>
 
@@ -121,11 +123,17 @@ $totalPrice = 0;
   </div>
   </div>
 
+  
   </td>
+  
+  
+  <?php $shipment = $order['shipment'];
+  $totalPrice += $shipment;
+  ?>
 
   <td><?php echo $order['dateorder'] ?></td>
 
-  <td>none</td>
+  <td><?php echo getShipmentMethod($shipment)?></td>
   <td> <?php echo $totalPrice ?> € </td>
 
   <td><a href="#" class="btn btn-primary" id="orderAgain-<?php echo  $order['idorder']?>">Order again!</a> </td>
@@ -150,10 +158,27 @@ $totalPrice = 0;
                     })
                 .then(response => response.json())
                 .then(data => {
+                  const params = new URLSearchParams();
+                 params.append('action', 'sendEmail');
+                params.append('orderid', data.orderId);
                     // Aquí actualizamos el valor del carrito en el otro archivo
-                    window.location.href = 'thankyou.php'; // Redirect if needed
-                })
-                .catch(error => console.error('Error:', error));
+                    return fetch('orderMail.php', {
+            method: 'POST',
+            body: params
+        });
+      })
+      .then(response => response.json()) // Handle second response (sending email)
+      .then(data => {
+        if (!data.status == "success") {
+            throw new Error('Email sending failed');
+          }
+
+         window.location.href = 'thankyou.php'; // Redirect if all is successful
+           })
+          .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your order.');
+          });
 
             });
 

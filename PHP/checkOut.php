@@ -20,7 +20,7 @@ if (!isset($_SESSION['totalPrice'])) {
             <!-- Shipment Method -->
             <div class="col">
                 <h3>Select shipment method</h3>
-                <div class="form-check" style="border: 2px solid gray; border-radius: 15px; padding: 10px;">
+                <div  style="border: 2px solid gray; border-radius: 15px; padding: 10px;">
                     <!-- Option 1 -->
                     <input class="form-check-input" type="radio" name="shippingMethod" id="pdpMethod" value="2.99" required>
                     <label class="form-check-label" for="pdpMethod">
@@ -47,7 +47,7 @@ if (!isset($_SESSION['totalPrice'])) {
                 <!-- Checkbox -->
                 <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
                 <label class="form-check-label" for="termsCheckbox">
-                    I have read and accepted the data protection and privacy policies
+                I confirm that I have read, understood, and accepted the data protection policy
                 </label>
                 <br><br>
             </div>
@@ -68,10 +68,6 @@ if (!isset($_SESSION['totalPrice'])) {
                         <td>Shipment</td>
                         <td class="right-align" id="shippingCost">0.00 €</td>
                     </tr>
-                    <tr>
-                        <td>IVA Included</td>
-                        <td class="right-align">0.00 €</td>
-                    </tr>
                     <tr class="table-dark">
                         <td>Estimated total amount</td>
                         <td class="right-align" id="totalAmount"> <?php echo $_SESSION['totalPrice']?> €</td>
@@ -80,15 +76,17 @@ if (!isset($_SESSION['totalPrice'])) {
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary" id="toOrder">Pay</button>
-                <br>
-                <br>
+                
 
             </div>
         </div>
     </form>
 </div>
 
+<br><br>
+
 <?php include 'dependences_php/footImport.php';?>
+
 </main>
 
 <script>

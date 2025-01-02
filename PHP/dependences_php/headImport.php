@@ -88,12 +88,7 @@ $_SESSION['cart'] = $totalArticles;
                         <li><a class="dropdown-item" href="basketBall.php">Basketball</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= ($activePage == 'about') ? 'active' : ''; ?>" href="aboutus.php">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="contact.php">Contact</a>
-                </li>
+              
 
                 <li class="nav-item">
                     <a class="nav-link <?= ($activePage == 'contact') ? 'active' : ''; ?>" href="shoppingCart.php">
