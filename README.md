@@ -16,7 +16,6 @@ Javier:
 - HomePage.php
 - Contact.php
 - setPassword.php
-- - *emailRegister.php -->email que se manda formateado como html* -- ESTO ES emailSend.php
 
 Yeray:
 - AllArticles.php --> solo 3 o 4 articulos en la pagina listados
@@ -24,6 +23,7 @@ Yeray:
 - CheckOut.php
 - OrderConfirmed.php
 - About.php
+- *emailRegister.php -->email que se manda formateado como html* 
 
 ## Requirements
 
