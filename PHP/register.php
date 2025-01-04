@@ -16,21 +16,25 @@ include 'dependences_php/headImport.php';
         </div>
 
         <div class="col-md-4">
-            <form method="POST" id="signupForm">
-                <div class="mb-3">
-                    <label for="InputFirstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" required>
-                </div>
+    <form method="POST" id="signupForm">
+        <div class="mb-3">
+            <label for="InputFirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
+        </div>
 
-                <div class="mb-3">
-                    <label for="InputLastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" required>
-                </div>
+        <div class="mb-3">
+            <label for="InputLastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+        </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 <!--
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
@@ -42,7 +46,6 @@ include 'dependences_php/headImport.php';
                     <input type="password" class="form-control" id="repeat_password" name="repeat_password" >
                 </div>
 -->
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
             <?php include "dependences_php/checkRegister.php"; ?>

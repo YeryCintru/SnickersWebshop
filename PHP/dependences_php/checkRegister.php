@@ -1,7 +1,8 @@
 <?php
-require '../../vendor/autoload.php';
-use PHPMailer\PHPMailer\src\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+//require '../../vendor/autoload.php';
+//use phpMailer\PHPMailer\PHPMailer;
+//use phpMailer\PHPMailer\Exception;
+
 function generatePassword($length = 12)
 {
     // Define character sets to meet the requirements
@@ -61,10 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     VALUES (:username, :firstName, :lastName, :password)
                     ';
 
-    // Replace values manually in the SQL string
+    // Replace values manually in the SQL string and add quotes around values
     $insertSQL = str_replace(
         [':username', ':firstName', ':lastName', ':password'],
-        [$email, $firstName, $lastName, $hashedPassword],
+        ["'{$email}'", "'{$firstName}'", "'{$lastName}'", "'{$hashedPassword}'"],
         $query
     );
     if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
@@ -73,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error saving the INSERT statement.";
     }
-
+/*
     $mail = new PHPMailer(true);  // Instanciar PHPMailer
 
     try {
@@ -100,6 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-
+*/
 }
 ?>
