@@ -38,7 +38,6 @@ include 'dependences_php/headImport.php';
 
 </main>
 <?php include 'dependences_php/footImport.php'; ?>
-<body>
 
 </body>
 

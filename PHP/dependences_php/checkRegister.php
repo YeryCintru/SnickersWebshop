@@ -1,4 +1,5 @@
 <?php
+require '../../vendor/autoload.php';
 function generatePassword($length = 12)
 {
     // Define character sets to meet the requirements
@@ -29,7 +30,7 @@ function generatePassword($length = 12)
 }
 
 require 'database.php'; // Make sure to have the database connection
-$file_target = '..\SQL\dependences_php.sql';
+$file_target = '..\SQL\users.sql';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstName = trim($_POST['first_name']);
@@ -73,30 +74,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
+    $mail = new PHPMailer(true);  // Instanciar PHPMailer
 
-
+    try {
+        //Configuración del servidor
+        $mail->isSMTP();
+        $mail->Host = 'smtp.example.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'usuario@example.com';
+        $mail->Password = 'password';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
     
-    // Send email
-
-    $to = "javier8javier9@gmail.com";  // Recipient's email address
-    $subject = "Test HTML Email";  // Email subject
-
-    // Email body in HTML format
-    $message = "<html><body>";
-    $message .= "<h1>Hello, this is a test email with HTML formatting!</h1>";
-    $message .= "<p>This is a <strong>test</strong> email with <em>HTML</em> formatting.</p>";
-    $message .= "<p>Best regards,<br>PHP Mailer</p>";
-    $message .= "</body></html>";
-
-    // Headers to indicate that the content is HTML
-    $headers = "From: prueba@gmail.com\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";  // Specify that the content is HTML
-
-    // Send the email
-    if (mail($to, $subject, $message, $headers)) {
-        echo "Email sent successfully!";
-    } else {
-        echo "Failed to send email.";
+        //Destinatarios
+        $mail->setFrom('from@example.com', 'Mailer');
+        $mail->addAddress('recipient@example.com', 'Joe User');
+    
+        //Contenido
+        $mail->isHTML(true);
+        $mail->Subject = 'Test Email';
+        $mail->Body    = 'This is a <b>test</b> email message.';
+    
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
+
 }
 ?>

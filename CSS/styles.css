@@ -35,3 +35,8 @@ button.btn {
     padding: 10px; /* Espacio interno del botón */
     float: left;
 }
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}
