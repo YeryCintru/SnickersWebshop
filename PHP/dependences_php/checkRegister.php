@@ -1,5 +1,7 @@
 <?php
 require '../../vendor/autoload.php';
+use PHPMailer\PHPMailer\src\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 function generatePassword($length = 12)
 {
     // Define character sets to meet the requirements
@@ -71,8 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error saving the INSERT statement.";
     }
-
-
 
     $mail = new PHPMailer(true);  // Instanciar PHPMailer
 
