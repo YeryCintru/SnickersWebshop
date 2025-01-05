@@ -19,8 +19,9 @@ CREATE TABLE IF NOT EXISTS `users` (
     `firstName` VARCHAR(20) NOT NULL,
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `IDshoppingBasket` INT NOT NULL, -- Se eliminó AUTO_INCREMENT
-    `twoFactorAuth` VARCHAR(255) NOT NULL, -- Cambiado de `2fa` a un nombre válido
+    `IDshoppingBasket` INT NOT NULL, 
+    `twoFactorAuth` VARCHAR(255) NOT NULL,
+    `active` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDuser`)
 ) ENGINE = InnoDB;
 
@@ -28,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `logins` (
     `IDlogin` INT NOT NULL AUTO_INCREMENT,
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `screenResolution` VARCHAR(50) NOT NULL, -- Se amplió a VARCHAR(50)
-    `operatingSystem` VARCHAR(50) NOT NULL,  -- Se amplió a VARCHAR(50)
+    `screenResolution` VARCHAR(50) NOT NULL, 
+    `operatingSystem` VARCHAR(50) NOT NULL, 
     `active` BOOLEAN NOT NULL,
     `IDuser` INT NOT NULL,
     PRIMARY KEY (`IDlogin`),  
@@ -39,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `logins` (
 -- Crear tabla `articles`
 CREATE TABLE IF NOT EXISTS `articles` (
     `idarticle` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(50) NOT NULL, -- Se amplió a VARCHAR(50)
+    `name` VARCHAR(50) NOT NULL, 
     `price` FLOAT NOT NULL,
     `stock` INT NOT NULL,
     `description` TEXT NOT NULL,
@@ -80,14 +81,6 @@ CREATE TABLE IF NOT EXISTS `userarticle` (
 SIN COMILLAS, (me daba error el my sql)
 
 ----------------------------------------
-DROP TABLE urbankicks.users;
-DROP TABLE urbankicks.logins;
-DROP TABLE urbankicks.articles;
-DROP TABLE urbankicks.orders;
-DROP TABLE urbankicks.orderarticle;
-DROP TABLE urbankicks.userarticle;
-
-CREATE DATABASE IF NOT EXISTS urbankicks;
 
 /* users */
 CREATE TABLE IF NOT EXISTS urbankicks.users (

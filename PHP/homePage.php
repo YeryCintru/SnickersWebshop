@@ -5,7 +5,9 @@ $title = "UrbanKicks";
 include 'dependences_php/headImport.php';
 ?>
 <main>
-
+<div>
+        <h2>Usuarios Conectados: <span id="connected-count">0</span></h2>
+    </div>
     <div class="image-container">
         <img src="..\Images\homePage\imageHomePage.jpg" alt="Descripción de la imagen">
         <div class="overlay-text">
@@ -38,7 +40,7 @@ include 'dependences_php/headImport.php';
 
 </main>
 <?php include 'dependences_php/footImport.php'; ?>
-
+<script src="dependences_php/connectedUsers.js"></script>
 </body>
 
 </html>

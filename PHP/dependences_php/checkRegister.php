@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Insert the user into the database
             $stmt = $pdo->prepare('
-                INSERT INTO users (username, firstName, lastName, password) 
-                VALUES (:username, :firstName, :lastName, :password)
+            INSERT INTO users (username, firstName, lastName, password, active) 
+            VALUES (:username, :firstName, :lastName, :password, 0)
             ');
 
             // Execute the query with the appropriate values
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 } else {
-    echo 'Invalid request method!';  // Invalid request method
+ //   echo 'Invalid request method!';  // Invalid request method
 }
 
 ?>
