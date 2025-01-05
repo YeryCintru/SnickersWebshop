@@ -69,11 +69,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query
     );
     if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
-        echo "The INSERT statement has been successfully saved to '$file_target'. Password: '$password'";
+      
+        setcookie('email', $email, time() + 3600, '/'); // 1 hora de duración
+        setcookie('password', $password, time() + 3600, '/'); // 1 hora de duración
+
+        header('Location: thankYouRegister.php'); 
+        exit();
 
     } else {
         echo "Error saving the INSERT statement.";
     }
+
 /*
     $mail = new PHPMailer(true);  // Instanciar PHPMailer
 

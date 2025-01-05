@@ -1,6 +1,8 @@
 <?php
 session_start();
 $title = "Snickers Register";
+include "dependences_php/checkRegister.php"; 
+
 include 'dependences_php/headImport.php';
 ?>
 <main>
@@ -48,7 +50,6 @@ include 'dependences_php/headImport.php';
 -->
             </form>
 
-            <?php include "dependences_php/checkRegister.php"; ?>
 
 
         </div>
