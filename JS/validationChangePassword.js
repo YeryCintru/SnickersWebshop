@@ -3,21 +3,21 @@ document.getElementById('changePasswordForm').addEventListener('submit', functio
     e.preventDefault();
 
     // Get values from the form
-    const newPassword = document.getElementById('newPassword').value.trim(); // Nueva contraseña
-    const confirmPassword = document.getElementById('confirmPassword').value.trim(); // Confirmar contraseña
+    const newPassword = document.getElementById('newPassword').value.trim(); // New password
+    const confirmPassword = document.getElementById('confirmPassword').value.trim(); // Confirm password
 
-    // Validar que las contraseñas coinciden
+    // Validate that the passwords match
     if (newPassword !== confirmPassword) {
-        alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+        alert('The passwords do not match. Please try again.');
         return;
     }
 
-    // Validar que la nueva contraseña cumpla con los requisitos (mínimo 9 caracteres, mayúsculas, minúsculas y números)
+    // Validate that the new password meets the requirements (at least 9 characters, uppercase, lowercase, and numbers)
     if (newPassword.length < 9 || !/[A-Z]/.test(newPassword) || !/[a-z]/.test(newPassword) || !/\d/.test(newPassword)) {
-        alert('La contraseña debe tener al menos 9 caracteres y contener letras mayúsculas, minúsculas y números.');
+        alert('The password must be at least 9 characters long and contain uppercase letters, lowercase letters, and numbers.');
         return;
     }
 
-    // Si todo es válido, enviar el formulario
+    // If everything is valid, submit the form
     this.submit();
 });

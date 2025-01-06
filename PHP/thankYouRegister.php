@@ -29,9 +29,9 @@ include 'dependences_php/headImport.php';
 </main>
 
 <?php 
-    // Delete the cookies after they are used to avoid leaving sensitive data in the browser
-    //setcookie('email', '', time() - 3600, '/'); // Delete email cookie
-    //setcookie('password', '', time() - 3600, '/'); // Delete password cookie
+    // Delete the cookies 
+    setcookie('email', '', time() - 3600, '/'); // Delete email cookie
+    setcookie('password', '', time() - 3600, '/'); // Delete password cookie
 
     include 'dependences_php/footImport.php'; 
 ?>

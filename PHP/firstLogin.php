@@ -6,12 +6,12 @@ include 'dependences_php/headImport.php';
 ?>
 <main>
     <div class="container">
-    <h2>Cambiar Contraseña</h2>
+    <h2>Change Password</h2>
     
-    <!-- Mensaje de bienvenida y explicación -->
-    <p>Por favor, introduce una nueva contraseña para completar tu primer inicio de sesión.</p>
+    <!-- Welcome message and explanation -->
+    <p>Please enter a new password to complete your first login.</p>
     
-    <!-- Mostrar mensajes de error o éxito -->
+    <!-- Display error or success messages -->
     <?php if (isset($_SESSION['error_message'])): ?>
         <div class="alert alert-danger">
             <?= $_SESSION['error_message'] ?>
@@ -26,19 +26,19 @@ include 'dependences_php/headImport.php';
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
 
-    <!-- Formulario de cambio de contraseña -->
+    <!-- Password change form -->
     <form id="changePasswordForm" method="POST">
         <div class="form-group">
-            <label for="newPassword">Nueva Contraseña:</label>
+            <label for="newPassword">New Password:</label>
             <input type="password" id="newPassword" name="newPassword" class="form-control" required>
         </div>
         
         <div class="form-group">
-            <label for="confirmPassword">Confirmar Contraseña:</label>
+            <label for="confirmPassword">Confirm Password:</label>
             <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
         </div>
         
-        <button type="submit" class="btn btn-primary">Cambiar Contraseaa
+        <button type="submit" class="btn btn-primary">Change Password
         </button>
     </form>
 </div>
@@ -47,7 +47,7 @@ include 'dependences_php/headImport.php';
 </main>
 <?php  include 'dependences_php/footImport.php'; ?>
 
-    <!-- Incluir el archivo de JavaScript para la validación -->
+    <!-- Include the JavaScript file for validation -->
     <script src="../JS/validationChangePassword.js"></script>
 
 </body>

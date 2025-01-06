@@ -3,37 +3,37 @@ require 'database.php';
 include 'dependences_php/generatePassword.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener el correo electrónico enviado por el usuario
+    // Get the email sent by the user
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-    // Validar el correo electrónico
+    // Validate the email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['error_message'] = "Por favor, introduce un correo electrónico válido.";
+        $_SESSION['error_message'] = "Please enter a valid email address.";
     } else {
         $newPassword = generatePassword();
 
-        // Actualizar la contraseña y establecer `first_login` en 1 para el usuario con el correo proporcionado
-        $stmt = $pdo->prepare("UPDATE users SET password = ?, first_login = 1 WHERE email = ?");
-        $hashedPassword = password_hash('sha512',$newPassword); // Cifrar la nueva contraseña
+        // Update the password and set `first_login` to 1 for the user with the provided email
+        $stmt = $pdo->prepare("UPDATE users SET password = ?, first_login = 1 WHERE username = ?");
+        $hashedPassword = hash('sha512', $newPassword); // Encrypt the new password
         $stmt->execute([$hashedPassword, $email]);
 
         if ($stmt->rowCount() > 0) {
-            // Enviar el correo con la nueva contraseña
-            $subject = "Tu nueva contraseña";
-            $message = "Tu nueva contraseña es: " . $newPassword;
-            $headers = "From: no-reply@tuweb.com";
+            // Send the email with the new password
+            $subject = "Your new password";
+            $message = "Your new password is: " . $newPassword;
+            $headers = "From: no-reply@yourwebsite.com";
 
             if (mail($email, $subject, $message, $headers)) {
-                $_SESSION['success_message'] = "Se ha enviado una nueva contraseña a tu correo.";
+                $_SESSION['success_message'] = "A new password has been sent to your email.";
             } else {
-                $_SESSION['error_message'] = "Hubo un problema al enviar el correo. Inténtalo de nuevo.";
+                $_SESSION['error_message'] = "There was a problem sending the email. Please try again.";
             }
         } else {
-            $_SESSION['error_message'] = "No se encontró una cuenta asociada a ese correo.";
+            $_SESSION['error_message'] = "No account found associated with that email.";
         }
     }
 
-    // Redirigir a la misma página para mostrar el mensaje
+    // Redirect to the same page to show the message
     header("Location: index.php");
     exit();
 }
@@ -41,14 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 session_start();
-$title = "Forgot password";
+$title = "Forgot Password";
 include 'dependences_php/headImport.php';
 ?>
 <main>
 <div class="container">
-    <h2>Recuperar Contraseña</h2>
+    <h2>Recover Password</h2>
 
-    <!-- Mostrar mensajes de error o éxito -->
+    <!-- Display error or success messages -->
     <?php if (isset($_SESSION['error_message'])): ?>
         <div class="alert alert-danger">
             <?= $_SESSION['error_message'] ?>
@@ -63,13 +63,13 @@ include 'dependences_php/headImport.php';
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
 
-    <!-- Formulario para solicitar el correo -->
+    <!-- Form to request the email -->
     <form method="POST">
         <div class="form-group">
-            <label for="email">Correo Electrónico:</label>
+            <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar nueva contraseña</button>
+        <button type="submit" class="btn btn-primary">Send New Password</button>
     </form>
     <br>
     <br>

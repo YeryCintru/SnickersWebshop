@@ -2,9 +2,7 @@
 session_start();
 include '../database.php';
 
-// Asegúrate de devolver solo JSON
 header('Content-Type: application/json');
-
 
 // Incrementar el contador del carrito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateCart') {

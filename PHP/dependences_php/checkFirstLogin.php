@@ -2,49 +2,48 @@
 session_start();
 require 'dependences_php/security.php';
 require 'database.php';
-// Obtener el usuario de la base de datos
+
+// Get the user from the database
 $userId = $_SESSION['user_id'];
 $stmt = $pdo->prepare('SELECT * FROM users WHERE IDuser = :id');
 $stmt->execute(['id' => $userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-
-// Verificar si es el primer inicio de sesión
+// Check if it is the first login
 if ($user['first_login'] != 1) {
-     header('Location: homePage.php'); // Si no es el primer login, redirigir al home
+    header('Location: homePage.php'); // If not the first login, redirect to home
     exit;
 }
 
-// Manejar la actualización de la contraseña
+// Handle password update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newPassword = trim($_POST['newPassword']);
     $confirmPassword = trim($_POST['confirmPassword']);
 
-    // Validar que las contraseñas coinciden
+    // Validate that the passwords match
     if ($newPassword !== $confirmPassword) {
-        $_SESSION['error_message'] = "Las contraseñas no coinciden. Inténtalo de nuevo.";
+        $_SESSION['error_message'] = "Passwords do not match. Please try again.";
     } else {
-        // Validar que la nueva contraseña cumpla con los requisitos
+        // Validate that the new password meets the requirements
         if (
-            strlen($newPassword) < 9 || // Longitud mínima
-            !preg_match('/[A-Z]/', $newPassword) || // Al menos una mayúscula
-            !preg_match('/[a-z]/', $newPassword) || // Al menos una minúscula
-            !preg_match('/\d/', $newPassword) // Al menos un número
+            strlen($newPassword) < 9 || // Minimum length
+            !preg_match('/[A-Z]/', $newPassword) || // At least one uppercase letter
+            !preg_match('/[a-z]/', $newPassword) || // At least one lowercase letter
+            !preg_match('/\d/', $newPassword) // At least one number
         ) {
-            $_SESSION['error_message'] = "La nueva contraseña no cumple con los requisitos mínimos.";
+            $_SESSION['error_message'] = "The new password does not meet the minimum requirements.";
         } else {
-            // Hashear la nueva contraseña
+            // Hash the new password
             $hashedPassword = hash('sha512', $newPassword);
 
-            // Actualizar la contraseña en la base de datos
+            // Update the password in the database
             $stmt = $pdo->prepare("UPDATE users SET password = ?, first_login = 0 WHERE IDuser = ?");
             $stmt->execute([$hashedPassword, $userId]);
 
-            // Actualizar la sesión para reflejar que la contraseña se ha cambiado
-            $_SESSION['success_message'] = "Contraseña cambiada exitosamente. ¡Bienvenido!";
+            // Update the session to reflect that the password has been changed
+            $_SESSION['success_message'] = "Password successfully changed. Welcome!";
 
-            // Redirigir al usuario a la página de inicio
+            // Redirect the user to the homepage
             header('Location: homePage.php');
             exit;
         }

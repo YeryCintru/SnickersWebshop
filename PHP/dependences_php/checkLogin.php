@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         !preg_match('/[a-z]/', $password) || // Al menos una minúscula
         !preg_match('/\d/', $password) // Al menos un número
     ) {
-        $_SESSION['error_message'] = "The password does not meet the minimum requirements. Ensure it has at least 9 characters, including uppercase, lowercase letters, and numbers.";    } else {
+        $_SESSION['error_message'] = "The password does not meet the minimum requirements. Ensure it has at least 9 characters, including uppercase, lowercase letters, and numbers.";
+    } else {
         // Search for the user in the database
         $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
         $stmt->execute(['username' => $username]);
@@ -22,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user && (hash('sha512', $password) == $user['password'])) {
             // If credentials are valid, start a session
-      //      echo '<pre>';
-      //      var_dump($_POST, $user);
+            //      echo '<pre>';
+            //      var_dump($_POST, $user);
 
-      //      echo '</pre>';
+            //      echo '</pre>';
             $file_target = "..\SQL\logins.sql";
             $_SESSION['user_id'] = $user['IDuser'];  // Use the correct column for the ID
             $_SESSION['username'] = $user['username'];
@@ -41,6 +42,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':operatingSystem' => $operatingSystem,
                 ':IDuser' => $user['IDuser']
             ]);
+
+
+            if (isset($_SESSION['user_id'])) {
+                $userId = $_SESSION['user_id']; // Retrieve user ID from the session
+
+                // Prepare the SQL query to update the user's 'active' status
+                $stmt = $pdo->prepare(
+                    "UPDATE users 
+                     SET active = ? 
+                     WHERE IDuser = ?"
+                );
+
+                // Execute the query with '0' (inactive) status for the user
+                $stmt->execute([1, $userId]);
+
+                // Optionally check if the query was successful
+                if ($stmt->rowCount() > 0) {
+                    echo "User status updated to inactive successfully.";
+                } else {
+                    echo "Failed to update user status.";
+                }
+            } else {
+                echo "User not logged in.";
+            }
+
 
             $currentDateTime = date('Y-m-d H:i:s');
 
@@ -64,7 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header(header: 'Location: firstLogin.php'); // Redirect to the main page
             exit;
         } else {
-            $_SESSION['error_message'] = "Incorrect username or password. Please try again.";        }
+            $_SESSION['error_message'] = "Incorrect username or password. Please try again.";
+        }
     }
 }
 ?>
