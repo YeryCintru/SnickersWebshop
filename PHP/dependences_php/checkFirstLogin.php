@@ -1,11 +1,22 @@
-<?php 
-if ($user['first_login'] == 1) {
-    // Redirigir al usuario a la página de cambio de contraseña
-    header('Location: changePassword.php');
+<?php
+session_start();
+require 'dependences_php/security.php';
+require 'database.php';
+// Obtener el usuario de la base de datos
+$userId = $_SESSION['user_id'];
+$stmt = $pdo->prepare('SELECT * FROM users WHERE IDuser = :id');
+$stmt->execute(['id' => $userId]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
+// Verificar si es el primer inicio de sesión
+if ($user['first_login'] != 1) {
+     header('Location: homePage.php'); // Si no es el primer login, redirigir al home
     exit;
 }
 
-// Si el formulario para cambiar la contraseña ha sido enviado
+// Manejar la actualización de la contraseña
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newPassword = trim($_POST['newPassword']);
     $confirmPassword = trim($_POST['confirmPassword']);
@@ -14,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($newPassword !== $confirmPassword) {
         $_SESSION['error_message'] = "Las contraseñas no coinciden. Inténtalo de nuevo.";
     } else {
-        // Validar que la nueva contraseña cumple con los requisitos mínimos
+        // Validar que la nueva contraseña cumpla con los requisitos
         if (
             strlen($newPassword) < 9 || // Longitud mínima
             !preg_match('/[A-Z]/', $newPassword) || // Al menos una mayúscula
@@ -24,15 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error_message'] = "La nueva contraseña no cumple con los requisitos mínimos.";
         } else {
             // Hashear la nueva contraseña
-            $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+            $hashedPassword = hash('sha512', $newPassword);
 
             // Actualizar la contraseña en la base de datos
-            $stmt = $pdo->prepare("UPDATE users SET password = ?, first_login = 0 WHERE id = ?");
-            $stmt->execute([$hashedPassword, $user['id']]);
+            $stmt = $pdo->prepare("UPDATE users SET password = ?, first_login = 0 WHERE IDuser = ?");
+            $stmt->execute([$hashedPassword, $userId]);
 
             // Actualizar la sesión para reflejar que la contraseña se ha cambiado
             $_SESSION['success_message'] = "Contraseña cambiada exitosamente. ¡Bienvenido!";
-            
+
             // Redirigir al usuario a la página de inicio
             header('Location: homePage.php');
             exit;

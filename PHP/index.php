@@ -1,26 +1,9 @@
 <?php
 session_start();
 $title = "Snickers Login";
-include 'dependences_php/headImport.php';
 include "dependences_php/checkLogin.php";
+include 'dependences_php/headImport.php';
 
-/*if (!empty($_SESSION['user_id'])) {
-    header('Location: homePage.php'); 
-    exit();
-}
-/*
-}else{
-    $_SESSION['user_id'] = null;
-}
-
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = 0;
-}
-
-if (!isset($_SESSION['totalPrice'])) {
-    $_SESSION['totalPrice'] = 0;
-}
-*/
 ?>
 
 <main>
