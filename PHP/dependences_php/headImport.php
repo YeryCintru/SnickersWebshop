@@ -6,10 +6,10 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = 0;
 }
 
-$_SESSION['user_id'] = 1;
+//$_SESSION['user_id'] = 1;
 
 if (isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = 1;
+  //  $_SESSION['user_id'] = 1;
     $user = $_SESSION['user_id'];
 
 
