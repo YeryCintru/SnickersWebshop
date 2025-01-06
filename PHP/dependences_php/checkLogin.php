@@ -30,29 +30,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['IDuser'];  // Use the correct column for the ID
             $_SESSION['username'] = $user['username'];
 
-            $active = 1;
             $stmt = $pdo->prepare(
-                "INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
-                VALUES (CURRENT_TIMESTAMP, :screenResolution, :operatingSystem, :active, :IDuser)"
+                "INSERT INTO logins (date, screenResolution, operatingSystem, IDuser) 
+                VALUES (CURRENT_TIMESTAMP, :screenResolution, :operatingSystem, :IDuser)"
             );
 
             // Execute the query with the values
             $stmt->execute([
                 ':screenResolution' => $screenResolution,
                 ':operatingSystem' => $operatingSystem,
-                ':active' => $active,
                 ':IDuser' => $user['IDuser']
             ]);
 
             $currentDateTime = date('Y-m-d H:i:s');
 
             // Define the SQL query with the current date and time obtained in PHP
-            $query = 'INSERT INTO logins (date, screenResolution, operatingSystem, active, IDuser) 
-                        VALUES (:currentDateTime, :screenResolution, :operatingSystem, :active, :IDuser);';
+            $query = 'INSERT INTO logins (date, screenResolution, operatingSystem, IDuser) 
+                        VALUES (:currentDateTime, :screenResolution, :operatingSystem, :IDuser);';
 
             $insertSQL = str_replace(
-                [':currentDateTime', ':screenResolution', ':operatingSystem', ':active', ':IDuser'],
-                [$currentDateTime, $screenResolution, $operatingSystem, $active ? '1' : '0', $user['IDuser']],
+                [':currentDateTime', ':screenResolution', ':operatingSystem', ':IDuser'],
+                [$currentDateTime, $screenResolution, $operatingSystem, $user['IDuser']],
                 $query
             );
 

@@ -1,7 +1,7 @@
 <?php
-//require '../../vendor/autoload.php';
-//use phpMailer\PHPMailer\PHPMailer;
-//use phpMailer\PHPMailer\Exception;
+require '../../vendor/autoload.php';
+use phpMailer\PHPMailer\PHPMailer;
+use phpMailer\PHPMailer\Exception;
 
 function generatePassword($length = 12)
 {
@@ -33,7 +33,7 @@ function generatePassword($length = 12)
 }
 
 require 'database.php'; // Make sure to have the database connection
-$file_target = '..\SQL\users.sql';
+$file_target = '../SQL/users.sql';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -75,6 +75,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // If insertion was successful
             if ($stmt->rowCount() > 0) {
+
+                $query = 'INSERT INTO users (username, firstName, lastName, password, active) 
+            VALUES (\':username\', \':firstName\', \':lastName\', \':password\', 0)';
+
+                // Replace values manually in the SQL string
+                $insertSQL = str_replace(
+                    [':username', ':firstName', ':lastName', ':password'],
+                    [$email, $firstName, $lastName, $hashedPassword],
+                    $query
+                );
+                if (file_put_contents($file_target, $insertSQL . PHP_EOL, FILE_APPEND)) {
+                } else {
+                    echo "Error saving the INSERT statement.";
+                }
+
                 // Set cookies for the user (e.g., session persistence)
                 setcookie('email', $email, time() + 3600, '/'); // 1 hour duration
                 setcookie('password', $password, time() + 3600, '/'); // 1 hour duration
@@ -92,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 } else {
- //   echo 'Invalid request method!';  // Invalid request method
+    //   echo 'Invalid request method!';  // Invalid request method
 }
 
 ?>

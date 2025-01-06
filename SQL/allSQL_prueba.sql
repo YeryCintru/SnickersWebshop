@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `logins` (
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `screenResolution` VARCHAR(50) NOT NULL, 
     `operatingSystem` VARCHAR(50) NOT NULL, 
-    `active` BOOLEAN NOT NULL,
     `IDuser` INT NOT NULL,
     PRIMARY KEY (`IDlogin`),  
     FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE
@@ -74,84 +73,12 @@ CREATE TABLE IF NOT EXISTS `userarticle` (
     FOREIGN KEY (`idarticle`) REFERENCES `articles`(`idarticle`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-
-
-
 /*
-SIN COMILLAS, (me daba error el my sql)
-
 ----------------------------------------
-
-/* users */
-CREATE TABLE IF NOT EXISTS urbankicks.users (
-    IDuser INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(20) NOT NULL,
-    firstName VARCHAR(20) NOT NULL,
-    lastName VARCHAR(20) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    IDshoppingBasket INT NOT NULL AUTO_INCREMENT,
-    2fa VARCHAR(255) NOT NULL,
-    PRIMARY KEY (IDuser)
-) ENGINE = InnoDB;
-
-/* login */
-CREATE TABLE IF NOT EXISTS urbankicks.logins (
-    IDlogin INT NOT NULL AUTO_INCREMENT,
-    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    screenResolution VARCHAR(10) NOT NULL,
-    operatingSystem VARCHAR(10) NOT NULL,
-    active BOOLEAN NOT NULL,
-    IDuser INT NOT NULL,
-    PRIMARY KEY (IDlogin),
-    FOREIGN KEY (IDuser) REFERENCES users(IDuser) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
-/* article */
-CREATE TABLE IF NOT EXISTS urbankicks.articles (
-    idarticle INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(20) NOT NULL,
-    price FLOAT NOT NULL,
-    stock INT NOT NULL,
-    description TEXT NOT NULL,
-    PRIMARY KEY (idarticle)
-) ENGINE = InnoDB;
-
-/* orders */
-CREATE TABLE IF NOT EXISTS urbankicks.orders (
-    idorder INT NOT NULL AUTO_INCREMENT,
-    dateorder TIMESTAMP NOT NULL,
-    IDuser INT NOT NULL,
-    PRIMARY KEY (idorder),
-    FOREIGN KEY (IDuser) REFERENCES users(IDuser) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
-/* orderarticle */
-CREATE TABLE IF NOT EXISTS urbankicks.orderarticle (
-    quantity INT NOT NULL,
-    idorder INT NOT NULL,
-    idarticle INT NOT NULL,
-    FOREIGN KEY (idorder) REFERENCES orders(idorder) ON DELETE CASCADE,
-    FOREIGN KEY (idarticle) REFERENCES articles(idarticle) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
-/* userarticle */
-CREATE TABLE IF NOT EXISTS urbankicks.userarticle (
-    quantity INT NOT NULL,
-    IDuser INT NOT NULL,
-    idarticle INT NOT NULL,
-    FOREIGN KEY (IDuser) REFERENCES users(IDuser) ON DELETE CASCADE,
-    FOREIGN KEY (idarticle) REFERENCES articles(idarticle) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
-
-
-
 -- Insertando usuarios
-INSERT INTO urbankicks.users (username, firstName, lastName, password) 
+INSERT INTO urbankicks.users (username, firstName, lastName, password,active) 
 VALUES 
-('john_doe', 'John', 'Doe', 'password123'),
-('jane_smith', 'Jane', 'Smith', 'password456'),
-('sam_jones', 'Sam', 'Jones', 'password789');
+('admin@gmail.com', 'admin', 'admin', 'f1973d96812ab16510499d5a8747f03492c9fd582dd4c20ffd89ed84598b2a5e043d24cd3d8bda5106316b191f360852c695058f11b9d3851c60ec7aca2c72c6',0);
 
 -- Insertando artículos
 INSERT INTO urbankicks.articles (name, price, stock, description)
@@ -172,11 +99,9 @@ VALUES
 
 
 -- Insertando logins
-INSERT INTO urbankicks.logins (date, screenResolution, operatingSystem, active, IDuser)
+INSERT INTO urbankicks.logins (date, screenResolution, operatingSystem, IDuser)
 VALUES
-('2024-11-28 10:00:00', '1920x1080', 'Windows 10', TRUE, 1),
-('2024-11-28 11:30:00', '1366x768', 'macOS', TRUE, 2),
-('2024-11-28 12:45:00', '1440x900', 'Ubuntu', FALSE, 3);
+CURRENT_TIMESTAMP, '1920x1080', 'Windows', 1;
 
 -- Insertando pedidos
 INSERT INTO urbankicks.orders (dateorder, IDuser)
@@ -200,7 +125,7 @@ VALUES
 (1, 1, 1),  -- 1 Nike Air Max for John Doe
 (2, 2, 2),  -- 2 Adidas Ultraboost for Jane Smith
 (1, 3, 3);  -- 1 Puma RS-X for Sam Jones
-2
+
 
 ---------------------------------------
 
