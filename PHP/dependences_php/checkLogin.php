@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['error_message'] = "Error saving the INSERT statement.";
             }
 
-            header('Location: homePage.php'); // Redirect to the main page
+            header('Location: firstLogin.php'); // Redirect to the main page
             exit;
         } else {
             $_SESSION['error_message'] = "Incorrect username or password. Please try again.";        }

@@ -1,6 +1,6 @@
 function fetchConnectedUsers() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/connected-users', true);
+    xhr.open('GET', '../PHP/dependences_php/checkConnected.php', true);
     xhr.onload = function () {
         if (this.status === 200) {
             const response = JSON.parse(this.responseText);

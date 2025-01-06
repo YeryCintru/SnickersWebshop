@@ -40,7 +40,7 @@ include 'dependences_php/headImport.php';
 
 </main>
 <?php include 'dependences_php/footImport.php'; ?>
-<script src="dependences_php/connectedUsers.js"></script>
+<script src="../JS/connectedPeople.js"></script>
 </body>
 
 </html>

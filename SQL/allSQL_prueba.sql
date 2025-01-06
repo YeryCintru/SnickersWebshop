@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `firstName` VARCHAR(20) NOT NULL,
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
+    `first_login` TINYINT(1) DEFAULT 1,          
     `IDshoppingBasket` INT NOT NULL, 
     `twoFactorAuth` VARCHAR(255) NOT NULL,
     `active` BOOLEAN NOT NULL,
