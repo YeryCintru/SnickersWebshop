@@ -1,6 +1,8 @@
 <?php
 session_start();
 $title = "Thank You for Registering";
+setcookie('email', '', time() - 3600, '/'); // Delete email cookie
+setcookie('password', '', time() - 3600, '/'); // Delete password cookie
 include 'dependences_php/headImport.php';
 ?>
 <main>
@@ -11,15 +13,15 @@ include 'dependences_php/headImport.php';
             if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
                 $email = $_COOKIE['email']; // Retrieve the email from the cookie
                 $password = $_COOKIE['password']; // Retrieve the password from the cookie
-
+            }
                 // Ensure that the password is set correctly
                 $password = isset($password) ? htmlspecialchars($password) : 'Not specified';
-                $correo = isset($email) ? htmlspecialchars($email) : 'Email not available';
-            }
+                $email = isset($email) ? htmlspecialchars($email) : 'Email not available';
+            
             ?>
 
             <h1 class="text-primary">Thank You for Registering</h1>
-            <p class="text-muted">The password has been sent to your email: <strong><?php echo $correo; ?></strong>.</p>
+            <p class="text-muted">The password has been sent to your email: <strong><?php echo $email; ?></strong>.</p>
             <p class="text-muted">Your password is:HAY QUE BORRAR ESTO <strong><?php echo $password; ?></strong>.</p>
 
             <!-- Back to homepage button -->
@@ -29,10 +31,6 @@ include 'dependences_php/headImport.php';
 </main>
 
 <?php 
-    // Delete the cookies 
-    setcookie('email', '', time() - 3600, '/'); // Delete email cookie
-    setcookie('password', '', time() - 3600, '/'); // Delete password cookie
-
     include 'dependences_php/footImport.php'; 
 ?>
 

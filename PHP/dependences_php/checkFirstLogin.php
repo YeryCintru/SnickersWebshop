@@ -1,16 +1,17 @@
 <?php
 session_start();
-require 'dependences_php/security.php';
 require 'database.php';
 
 // Get the user from the database
 $userId = $_SESSION['user_id'];
+
 $stmt = $pdo->prepare('SELECT * FROM users WHERE IDuser = :id');
 $stmt->execute(['id' => $userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Check if it is the first login
 if ($user['first_login'] != 1) {
+    $_SESSION['Authorized']=true;
     header('Location: homePage.php'); // If not the first login, redirect to home
     exit;
 }
