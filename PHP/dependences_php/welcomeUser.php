@@ -1,40 +1,31 @@
 <?php 
 require 'database.php';
 
-
-try{
-    $userId= $_SESSION['user_id']; 
-$stmt = $pdo->prepare("SELECT firstName, lastName, last_login, active FROM users WHERE IDuser = ?");
+try {
+    $userId = $_SESSION['user_id']; 
+    $stmt = $pdo->prepare("SELECT firstName, lastName, last_login, active FROM users WHERE IDuser = ?");
     $stmt->execute([$userId]);
 
-    // Obtener los resultados
+    // Fetch results
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extraer datos del usuario
+        // Extract user data
         $firstName = $user['firstName'];
         $lastName = $user['lastName'];
         $lastLogin = $user['last_login'];
-        $isActive = $user['active'];
-
-        // Verificar si el usuario está activo
-        if (!$isActive) {
-            echo "Your account is inactive. Please contact support.";
-            exit;
-        }
-
-        // Formatear fecha de último inicio de sesión
+   
+        // Format last login date
         $dateTime = new DateTime($lastLogin);
-        $dayOfWeek = $dateTime->format('l'); // Día de la semana
-        $formattedDate = $dateTime->format('d.m.Y'); // Fecha en formato DD.MM.YYYY
+        $dayOfWeek = $dateTime->format('l'); // Day of the week
+        $formattedDate = $dateTime->format('d.m.Y'); // Date in DD.MM.YYYY format
 
         $message = "Welcome Mr/Mrs $lastName. You were last online on $dayOfWeek - $formattedDate.";
-    
-} else {
-    $errorMessage = "User not found.";
-}
+    } else {
+        $errorMessage = "User not found.";
+    }
 } catch (PDOException $e) {
-// Manejo de errores
-$errorMessage = "Database error: " . $e->getMessage();
+    // Error handling
+    $errorMessage = "Database error: " . $e->getMessage();
 }
 ?>

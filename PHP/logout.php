@@ -4,17 +4,17 @@ session_start();
 require 'database.php';
 
 if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id']; // Retrieve user ID from the session
+    $userId = $_SESSION['user_id']; 
 
-    // Prepare the SQL query to update the user's 'active' status
     $stmt = $pdo->prepare(
         "UPDATE users 
-        SET active = ? 
+        SET active = ?, last_login = ? 
         WHERE IDuser = ?"
     );
-
-    // Execute the query with '0' (inactive) status for the user
-    $stmt->execute([0, $userId]);
+    
+    $currentDateTime = date('Y-m-d H:i:s');
+    
+    $stmt->execute([0, $currentDateTime, $userId]);
 
     // Optionally check if the query was successful
     if ($stmt->rowCount() > 0) {

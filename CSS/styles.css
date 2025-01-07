@@ -1,42 +1,65 @@
-header,footer{
-    background: linear-gradient(to right, #5b81ff, #7190f7); /* Degradado de izquierda a derecha */
+header, footer {
+    background: linear-gradient(to right, #5b81ff, #7190f7); /* Gradient */
     padding: 10px;
-    color: #ffffff; /* Opcional: para cambiar el color del texto */
+    color: #ffffff; /* Text color */
 }
+
 .image-container {
-    position: relative; /* Necesario para posicionar el texto */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    overflow: hidden; /* Oculta cualquier contenido desbordado */
+    position: relative; /* Needed for text positioning */
+    width: 100%;
+    overflow: hidden;
 }
 
 .image-container img {
-    width: 100%; /* Imagen ocupa todo el ancho */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Image adjusts to width */
+    height: auto;
 }
 
 .overlay-text {
-    position: absolute; /* Posiciona el texto sobre la imagen */
-    top: 50%; /* Centra verticalmente */
-    left: var(--overlay-left, 20%); /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta la posición al centro */
-    color: white; /* Color del texto */
-    font-size: 2rem; /* Tamaño del texto, ajusta según necesidad */
-    font-weight: bold; /* Hace el texto más grueso */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor visibilidad */
-    text-align: center; /* Centra el texto si es multilineal */
+    position: absolute; /* Positions text */
+    top: 50%; /* Centers vertically */
+    left: var(--overlay-left, 20%); /* Centers horizontally */
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
-main{
+
+main {
     padding: 10px;
     background: #d0dbff;
 }
+
 button.btn {
-    margin-top: 10px; /* Espacio entre el texto y el botón */
-    width: 200px; /* Ajusta este valor para hacer el botón más largo */
-    padding: 10px; /* Espacio interno del botón */
+    margin-top: 10px; /* Space above the button */
+    width: 200px; /* Adjust width */
+    padding: 10px; /* Padding inside button */
     float: left;
 }
+
 .error-message {
     color: red;
     font-weight: bold;
     margin-top: 20px;
+}
+
+.carousel-inner .carousel-item img {
+    max-width: 60%;  /* Redimensiona la imagen al 60% de su tamaño original */
+    height: auto;  /* Mantiene la proporción de la imagen */
+    object-fit: contain;  /* Asegura que la imagen se ajuste sin distorsionarse */
+    margin: 0 auto;  /* Centra la imagen dentro del contenedor */
+}
+
+/* Cambiar el color del texto dentro del carrusel */
+.carousel-caption h5, .carousel-caption p {
+    color: black;  /* Cambia el color del texto a negro */
+}
+
+/* Opcional: Asegura que las imágenes en el carrusel no desborden */
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

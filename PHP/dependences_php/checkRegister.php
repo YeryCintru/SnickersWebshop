@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/autoload.php';
+//require '../../vendor/autoload.php';
 use phpMailer\PHPMailer\PHPMailer;
 use phpMailer\PHPMailer\Exception;
 
@@ -78,9 +78,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $_SESSION['email_error'] = 'Email is required!';
     }
-
-} else {
-    //   echo 'Invalid request method!';  // Invalid request method
-}
-
+} 
 ?>

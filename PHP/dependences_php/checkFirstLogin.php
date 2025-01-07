@@ -17,6 +17,8 @@ if ($user['first_login'] != 1) {
 }
 
 // Handle password update
+if ($user['first_login'] = 1) {
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newPassword = trim($_POST['newPassword']);
     $confirmPassword = trim($_POST['confirmPassword']);
@@ -44,10 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Update the session to reflect that the password has been changed
             $_SESSION['success_message'] = "Password successfully changed. Welcome!";
 
+            $_SESSION['Authorized']=true;
+
             // Redirect the user to the homepage
             header('Location: homePage.php');
             exit;
         }
     }
-}
+}}
 ?>
