@@ -29,3 +29,5 @@ INSERT INTO logins (date, screenResolution, operatingSystem, IDuser)
                         VALUES (2025-01-07 14:37:32, 1680x1120, Windows, 1);
 INSERT INTO logins (date, screenResolution, operatingSystem, IDuser) 
                         VALUES (2025-01-07 14:37:36, 1680x1120, Windows, 1);
+INSERT INTO logins (date, screenResolution, operatingSystem, IDuser) 
+                        VALUES (2025-01-07 14:55:15, 1680x1120, Windows, 1);
