@@ -1,4 +1,3 @@
--- Eliminar tablas existentes en el orden correcto
 DROP TABLE IF EXISTS `urbankicks`.`userarticle`;
 DROP TABLE IF EXISTS `urbankicks`.`orderarticle`;
 DROP TABLE IF EXISTS `urbankicks`.`logins`;
@@ -20,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `first_login` TINYINT(1) DEFAULT 1,          
-    `IDshoppingBasket` INT NOT NULL, 
+    `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `twoFactorAuth` VARCHAR(255) NOT NULL,
     `active` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDuser`)

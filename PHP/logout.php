@@ -9,8 +9,8 @@ if (isset($_SESSION['user_id'])) {
     // Prepare the SQL query to update the user's 'active' status
     $stmt = $pdo->prepare(
         "UPDATE users 
-         SET active = ? 
-         WHERE IDuser = ?"
+        SET active = ? 
+        WHERE IDuser = ?"
     );
 
     // Execute the query with '0' (inactive) status for the user
@@ -26,8 +26,8 @@ if (isset($_SESSION['user_id'])) {
     echo "User not logged in.";
 }
 
-session_unset(); // Eliminar variables de sesión
-session_destroy(); // Destruir la sesión
-header('Location: index.php'); // Redirigir al login
+session_unset();
+session_destroy();
+header('Location: index.php');
 exit();
 ?>

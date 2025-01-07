@@ -50,12 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Prepare the SQL query to update the user's 'active' status
                 $stmt = $pdo->prepare(
                     "UPDATE users 
-                     SET active = ? 
-                     WHERE IDuser = ?"
+                    SET active = ?,
+                            last_login = ? 
+                    WHERE IDuser = ?"
                 );
-
+                $lastLogin = date('Y-m-d H:i:s'); // Establece el tiempo actual como último inicio de sesión
                 // Execute the query with '0' (inactive) status for the user
-                $stmt->execute([1, $userId]);
+                $stmt->execute([1, $lastLogin, $userId]);
 
                 // Optionally check if the query was successful
                 if ($stmt->rowCount() > 0) {
