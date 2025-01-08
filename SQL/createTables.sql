@@ -1,36 +1,74 @@
-DROP TABLE `urbankicks`.`users`
-DROP TABLE `urbankicks`.`logins`
-DROP TABLE `urbankicks`.`supportTickets`
+DROP TABLE IF EXISTS `urbankicks`.`userarticle`;
+DROP TABLE IF EXISTS `urbankicks`.`orderarticle`;
+DROP TABLE IF EXISTS `urbankicks`.`logins`;
+DROP TABLE IF EXISTS `urbankicks`.`orders`;
+DROP TABLE IF EXISTS `urbankicks`.`articles`;
+DROP TABLE IF EXISTS `urbankicks`.`users`;
 
-CREATE DATABASE IF NOT EXISTS urbankicks;
+-- Crear base de datos si no existe
+CREATE DATABASE IF NOT EXISTS `urbankicks`;
 
-CREATE TABLE IF NOT EXISTS `urbankicks`.`users` (
+-- Usar la base de datos
+USE `urbankicks`;
+
+-- Crear tabla `users`
+CREATE TABLE IF NOT EXISTS `users` (
     `IDuser` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(20) NOT NULL,
     `firstName` VARCHAR(20) NOT NULL,
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `IDshoppingBasket` INT NOT NULL AUTO_INCREMENT,
-    `2fa` VARCHAR(255) NOT NULL,
+    `first_login` TINYINT(1) DEFAULT 1,          
+    `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `twoFactorAuth` VARCHAR(255) NOT NULL,
+    `active` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDuser`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `urbankicks`.`logins` (
+-- Crear tabla `logins`
+CREATE TABLE IF NOT EXISTS `logins` (
     `IDlogin` INT NOT NULL AUTO_INCREMENT,
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `screenResolution` VARCHAR(10) NOT NULL,
-    `operatingSystem` VARCHAR(10) NOT NULL,
-    `active` BOOLEAN NOT NULL,
+    `screenResolution` VARCHAR(50) NOT NULL, 
+    `operatingSystem` VARCHAR(50) NOT NULL, 
     `IDuser` INT NOT NULL,
     PRIMARY KEY (`IDlogin`),  
     FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `urbankicks`.`supportTickets` (
-    `IDticket` INT NOT NULL AUTO_INCREMENT,
-    `Name` VARCHAR(255) NOT NULL,
-    `Description` TEXT NOT NULL,
+-- Crear tabla `articles`
+CREATE TABLE IF NOT EXISTS `articles` (
+    `idarticle` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50) NOT NULL, 
+    `price` FLOAT NOT NULL,
+    `stock` INT NOT NULL,
+    `description` TEXT NOT NULL,
+    PRIMARY KEY (`idarticle`)
+) ENGINE = InnoDB;
+
+-- Crear tabla `orders`
+CREATE TABLE IF NOT EXISTS `orders` (
+    `idorder` INT NOT NULL AUTO_INCREMENT,
+    `dateorder` TIMESTAMP NOT NULL,
     `IDuser` INT NOT NULL,
-    PRIMARY KEY (`IDticket`),  
-    FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) 
-)ENGINE = InnoDB;
+    PRIMARY KEY (`idorder`), 
+    FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+-- Crear tabla `orderarticle`
+CREATE TABLE IF NOT EXISTS `orderarticle` (
+    `quantity` INT NOT NULL,
+    `idorder` INT NOT NULL,
+    `idarticle` INT NOT NULL,
+    FOREIGN KEY (`idorder`) REFERENCES `orders`(`idorder`) ON DELETE CASCADE,
+    FOREIGN KEY (`idarticle`) REFERENCES `articles`(`idarticle`) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+-- Crear tabla `userarticle`
+CREATE TABLE IF NOT EXISTS `userarticle` (
+    `quantity` INT NOT NULL,
+    `IDuser` INT NOT NULL,
+    `idarticle` INT NOT NULL,
+    FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE,
+    FOREIGN KEY (`idarticle`) REFERENCES `articles`(`idarticle`) ON DELETE CASCADE
+) ENGINE = InnoDB;

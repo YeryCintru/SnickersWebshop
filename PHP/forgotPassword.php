@@ -35,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
             //Recipients
             $mail->setFrom('webprogammingreut@gmail.com', 'Urbankicks');  // Set the sender email and name
-            
-            $email='javier8javier9@gmail.com';
             $mail->addAddress($email);                              // Add recipient email address
     
             // Content

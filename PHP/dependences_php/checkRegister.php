@@ -65,14 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Set cookies for the user (e.g., session persistence)
                 setcookie('email', $email, [
-                    'expires' => time() + 3600, // Expira en 1 hora
-                    'path' => '/',  // Asegura que la cookie esté disponible en todo el dominio
-                    'secure' => false,  // No es necesario en localhost, no tienes HTTPS
-                    'httponly' => true,  // Impide el acceso a la cookie mediante JavaScript
-                    'samesite' => 'Lax' // Usamos Lax para permitir el envío en contextos de primer partido o navegación de nivel superior
+                    'expires' => time() + 3600,
+                    'path' => '/',  
+                    'secure' => false, 
+                    'httponly' => true,  
+                    'samesite' => 'Lax' 
                 ]);
                 // Example usage of the function
-                $recipientEmail = 'javier8javier9@gmail.com';  // Recipient's email address
+                $recipientEmail = $email;  // Recipient's email address
                 $recipientName = 'Recipient Name';  // Recipient's name
                 $subject = 'This is your password';  // Subject of the email
                 $bodyContent = '
