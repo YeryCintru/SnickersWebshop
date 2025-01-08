@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
-use phpmailer\PHPMailer\PHPMailer;
-use phpmailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require 'generatePassword.php';
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ');
 
             // Execute the query with the appropriate values
-            $stmt->execute([
+            $stmt->execute(params: [
                 'username' => $email,  // Use email as the username
                 'firstName' => $firstName,
                 'lastName' => $lastName,
@@ -64,18 +64,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 // Set cookies for the user (e.g., session persistence)
-                setcookie('email', $email, time() + 3600, '/'); // 1 hour duration
-                setcookie('password', $password, time() + 3600, '/'); // 1 hour duration
+                setcookie('email', $email, [
+                    'expires' => time() + 3600, // Expira en 1 hora
+                    'path' => '/',  // Asegura que la cookie esté disponible en todo el dominio
+                    'secure' => false,  // No es necesario en localhost, no tienes HTTPS
+                    'httponly' => true,  // Impide el acceso a la cookie mediante JavaScript
+                    'samesite' => 'Lax' // Usamos Lax para permitir el envío en contextos de primer partido o navegación de nivel superior
+                ]);
+                // Example usage of the function
+                $recipientEmail = 'javier8javier9@gmail.com';  // Recipient's email address
+                $recipientName = 'Recipient Name';  // Recipient's name
+                $subject = 'This is your password';  // Subject of the email
+                $bodyContent = '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h1 {
+            color: #333333;
+            font-size: 24px;
+        }
+        .content p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .footer {
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Password Notification</h1>
+        </div>
+        <div class="content">
+            <h1>Hello,' . htmlspecialchars($firstName) . ' </h1>
+            <p>Your password is: <strong>' . htmlspecialchars($password) . '</strong></p>
+            <p>For security reasons, we highly recommend that you change your password immediately.</p>
+            
+            <p>If you didn\'t request this, please contact support immediately.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Urbankicks. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>';
+                $passwordEmail = 'jaes owwy dtpr ajlv';  // SMTP password (app-specific password for Gmail with 2-step verification)
 
-
-// Example usage of the function
-$recipientEmail = 'recipient@example.com';  // Recipient's email address
-$recipientName = 'Recipient Name';  // Recipient's name
-$subject = 'Test Email Subject';  // Subject of the email
-$bodyContent = '<h1>Hello, this is a test email!</h1><p>This is the body of the email.</p>';  // HTML body content
-$password = 'your_smtp_password';  // SMTP password (app-specific password for Gmail with 2-step verification)
-
-sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $password);  // Call the function and send the email
+             sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $passwordEmail);  // Call the function and send the email
 
 
 
@@ -90,9 +171,10 @@ sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $password);  
     } else {
         $_SESSION['email_error'] = 'Email is required!';
     }
-} 
+}
 
-function sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $password) {
+function sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $password)
+{
     $mail = new PHPMailer(true);  // Create a new PHPMailer instance
 
     try {
@@ -100,19 +182,19 @@ function sendEmail($recipientEmail, $recipientName, $subject, $bodyContent, $pas
         $mail->isSMTP();  // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';  // Set the SMTP server (Gmail in this case)
         $mail->SMTPAuth = true;  // Enable SMTP authentication
-        $mail->Username = 'your_email@gmail.com';  // SMTP username (your Gmail email address)
+        $mail->Username = 'webprogammingreut@gmail.com';  // SMTP username (your Gmail email address)
         $mail->Password = $password;  // SMTP password (use app-specific password if 2-step verification is enabled)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption
         $mail->Port = 587;  // Set the TCP port to connect to
 
         // Sender and recipient
-        $mail->setFrom('your_email@gmail.com', 'Your Name');  // Set the sender email and name
+        $mail->setFrom('webprogammingreut@gmail.com', 'Urbankicks');  // Set the sender email and name
         $mail->addAddress($recipientEmail, $recipientName);  // Set the recipient email and name
 
         // Set email format to HTML
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = $subject;  // Set the subject of the email
-        $mail->Body    = $bodyContent;  // Set the body content of the email (HTML)
+        $mail->Body = $bodyContent;  // Set the body content of the email (HTML)
         $mail->AltBody = strip_tags($bodyContent);  // Set the alternative text body for non-HTML email clients
 
         // Send the email
