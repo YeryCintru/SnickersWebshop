@@ -1,7 +1,7 @@
 /*
 ----------------------------------------
 -- Insertando usuarios
-INSERT INTO users (username, firstName, lastName, password,active) 
+INSERT INTO urbankicks.users (username, firstName, lastName, password,active) 
                     VALUES ('admin@gmail.com', 'admin', 'admin', 'f1973d96812ab16510499d5a8747f03492c9fd582dd4c20ffd89ed84598b2a5e043d24cd3d8bda5106316b191f360852c695058f11b9d3851c60ec7aca2c72c6',0)
 
 
@@ -23,9 +23,7 @@ VALUES
 
 
 -- Insertando logins
-INSERT INTO urbankicks.logins (date, screenResolution, operatingSystem, IDuser)
-VALUES
-CURRENT_TIMESTAMP, '1920x1080', 'Windows', 1;
+INSERT INTO `urbankicks`.`logins` (date, screenResolution, operatingSystem, IDuser) VALUES (CURRENT_TIMESTAMP, '1920x1080', 'Windows', 1);
 
 -- Insertando pedidos
 INSERT INTO urbankicks.orders (dateorder, IDuser)

@@ -32,7 +32,7 @@ include 'dependences_php/welcomeUser.php';
         <div class="overlay-text">
             New season! New products!
             <br>
-            <button type="button" class="btn btn-info">Discover now</button>
+            <button type="button" class="btn btn-info"   onclick="location.href='newArrivals.php'">Discover now</button>
         </div>
     </div>
 
@@ -41,7 +41,7 @@ include 'dependences_php/welcomeUser.php';
         <div class="overlay-text" style="--overlay-left: 70%;">
             Basketball season
             <br>
-            <button type="button" class="btn btn-info">Discover now</button>
+            <button type="button" class="btn btn-info" onclick="location.href='basketBall.php'">Discover now</button>
         </div>
     </div>
 
@@ -51,7 +51,7 @@ include 'dependences_php/welcomeUser.php';
         <div class="overlay-text">
             Go Streetwear!
             <br>
-            <button type="button" class="btn btn-info">Discover now</button>
+            <button type="button" class="btn btn-info"  onclick="location.href='streetWear.php'">Discover now</button>
         </div>
     </div>
 
