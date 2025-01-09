@@ -25,28 +25,6 @@ VALUES
 -- Insertando logins
 INSERT INTO `urbankicks`.`logins` (date, screenResolution, operatingSystem, IDuser) VALUES (CURRENT_TIMESTAMP, '1920x1080', 'Windows', 1);
 
--- Insertando pedidos
-INSERT INTO urbankicks.orders (dateorder, IDuser)
-VALUES
-('2024-11-28 14:00:00', 1),
-('2024-11-28 15:30:00', 2),
-('2024-11-28 16:00:00', 3);
-
--- Insertando relación entre pedidos y artículos (orderarticle)
-INSERT INTO urbankicks.orderarticle (quantity, idorder, idarticle)
-VALUES
-(2, 1, 1),  -- 2 Nike Air Max for order 1
-(1, 1, 2),  -- 1 Adidas Ultraboost for order 1
-(3, 2, 3),  -- 3 Puma RS-X for order 2
-(1, 3, 1),  -- 1 Nike Air Max for order 3
-(2, 3, 2);  -- 2 Adidas Ultraboost for order 3
-
--- Insertando relación entre usuarios y artículos (userarticle)
-INSERT INTO urbankicks.userarticle (quantity, IDuser, idarticle)
-VALUES
-(1, 1, 1),  -- 1 Nike Air Max for John Doe
-(2, 2, 2),  -- 2 Adidas Ultraboost for Jane Smith
-(1, 3, 3);  -- 1 Puma RS-X for Sam Jones
 
 
 ---------------------------------------
