@@ -17,7 +17,7 @@ VALUES
 ('Reebok Classic Leather', 70.00, 45, 'Zapatillas de cuero clásicas, cómodas y con un estilo minimalista que nunca pasa de moda.', 1),
 ('Nike Air Force 1', 100.00, 80, 'Zapatillas de baloncesto clásicas con una suela robusta y un diseño atemporal.', 1),
 ('Under Armour HOVR Phantom', 130.00, 35, 'Zapatillas deportivas con tecnología HOVR para una sensación de gravedad cero y mayor retorno de energía.', 3),
-('Fila Disruptor 2', 75.00, 90, 'Zapatillas con una suela gruesa y un diseño audaz, populares por su estilo urbano y retro.', 1),
+('Fila Disrüptor 2', 75.00, 90, 'Zapatillas con una suela gruesa y un diseño audaz, populares por su estilo urbano y retro.', 1),
 ('Vans Old Skool', 65.00, 60, 'Zapatillas clásicas de skate con la icónica franja lateral y diseño simple y elegante.', 2),
 ('Asics Gel-Kayano 26', 120.00, 50, 'Zapatillas de running con tecnología Gel para una amortiguación y estabilidad excepcionales.', 3);
 
