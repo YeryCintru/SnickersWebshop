@@ -74,3 +74,11 @@ CREATE TABLE IF NOT EXISTS `userarticle` (
     FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE,
     FOREIGN KEY (`idarticle`) REFERENCES `articles`(`idarticle`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `supportTickets` (
+    TicketID INT AUTO_INCREMENT PRIMARY KEY,
+    Email VARCHAR(255) NOT NULL,
+    Description TEXT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB;

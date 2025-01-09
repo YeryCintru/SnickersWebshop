@@ -26,10 +26,6 @@ include 'dependences_php/headImport.php';
                     <label for="Password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
                 <input type="hidden" name="screenResolution" id="screenResolution">
                 <input type="hidden" name="operatingSystem" id="operatingSystem">
                 <button type="submit" class="btn btn-primary w-100">Log In</button>

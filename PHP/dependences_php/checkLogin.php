@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $currentDateTime = date('Y-m-d H:i:s');
 
             // Define the SQL query with the current date and time obtained in PHP
-            $query = 'INSERT INTO logins (date, screenResolution, operatingSystem, IDuser) 
+            $query = 'INSERT INTO logins (\'date\', \'screenResolution\', \'operatingSystem\', IDuser) 
                         VALUES (:currentDateTime, :screenResolution, :operatingSystem, :IDuser);';
 
             $insertSQL = str_replace(

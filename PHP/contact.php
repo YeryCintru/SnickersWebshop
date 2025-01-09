@@ -1,6 +1,7 @@
 <?php
 session_start();
 $title = "Contact";
+require 'database.php';
 include 'dependences_php/headImport.php';
 ?>
 <main>
@@ -246,39 +247,59 @@ include 'dependences_php/headImport.php';
 
 
     <div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-7 text-center">
-            <h1 class="display-5">Maybe you want to write us :)</h1>
-            <p class="lead">We would love to hear from you. Please fill out the form below.</p>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-7 text-center">
+                <h1 class="display-5">Maybe you want to write us :)</h1>
+                <p class="lead">We would love to hear from you. Please fill out the form below.</p>
+            </div>
         </div>
-    </div>
 
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-6">
-            <form method="POST" class="form-container" id="contactForm">
-                <div class="mb-4">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <form method="POST" class="form-container" id="contactForm">
+                    <div class="mb-4">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
 
-                <div class="mb-4">
-                    <label for="exampleInputName" class="form-label">Your Name</label>
-                    <input type="text" class="form-control" id="exampleInputName" name="name" required>
-                    <div class="form-text">Please provide your full name.</div>
-                </div>
+                    <div class="mb-4">
+                        <label for="exampleInputName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="exampleInputName" name="name" required>
+                        <div class="form-text">Please provide your full name.</div>
+                    </div>
 
-                <div class="mb-4">
-                    <label for="message" class="form-label">Your Message</label>
-                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                    <div class="form-text">Share your thoughts or queries with us!</div>
-                </div>
+                    <div class="mb-4">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        <div class="form-text">Share your thoughts or queries with us!</div>
+                    </div>
 
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
         </div>
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+
+            $sql = "INSERT INTO supportTickets (Email, Description) VALUES (:email, :message)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':message', $message);
+
+            if ($stmt->execute()); 
+        }
+
+
+        ?>
+
+
+
     </div>
-</div>
 
 </main>
 
