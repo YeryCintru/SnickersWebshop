@@ -36,6 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'createOrder'){
         $stmt->execute([$article['quantity'],$orderId,$article['idarticle']]);
         }
 
+         // Query to delete selected items
+         $stmt = $pdo->prepare('DELETE FROM userarticle WHERE IDuser = ?');
+         $stmt->execute([$userId]);
+         
+    
+
     echo json_encode(['orderId' => $orderId]);
     exit; 
 
