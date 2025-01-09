@@ -35,7 +35,7 @@
 function getInfoOrderArticle($pdo,$order){
 
     // Query to fetch all items from the articles table
-    $query = "SELECT * FROM orders NATURAL JOIN orderarticle NATURAL JOIN articles WHERE idorder = $order";
+    $query = "SELECT * FROM orders NATURAL JOIN orderarticle NATURAL JOIN articles NATURAL JOIN users WHERE idorder = $order";
     $stmt = $pdo->query($query);
 
     // Fetch all results as an associative array
@@ -65,22 +65,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] == "sendEmail") {
     $productQuantity = 0;
     $orderShipment = 0;
     $totalAmount = 0;
+    $email = 0;
 
     $articles = getInfoOrderArticle($pdo,$number);
+
+    // Access the first element of the resulting array
+    $firstElement = $articles[0];
+
+    // Access to the email
+    $email = $firstElement['username'];
 
 
       // Server settings
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com'; // SMTP server
       $mail->SMTPAuth = true;
-      $mail->Username = 'yerynavas@gmail.com'; // SMTP username
-      $mail->Password = 'yvitbtqzlgldpkzq'; // SMTP password
+      $mail->Username = 'webprogammingreut@gmail.com'; // SMTP username
+      $mail->Password = 'jaes owwy dtpr ajlv'; // SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption
       $mail->Port = 587; // TCP port
   
       // Email content
       $mail->setFrom('no-reply@urbankicks.com', 'Urbankicks');
-      $mail->addAddress('yerynavas@gmail.com'); // Recipient
+      $mail->addAddress($email); // Recipient
       $mail->isHTML(true);
       $mail->Subject = "Invoice #$number";
 

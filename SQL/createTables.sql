@@ -14,7 +14,7 @@ USE `urbankicks`;
 -- Crear tabla `users`
 CREATE TABLE IF NOT EXISTS `users` (
     `IDuser` INT NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(20) NOT NULL,
+    `username` VARCHAR(40) NOT NULL,
     `firstName` VARCHAR(20) NOT NULL,
     `lastName` VARCHAR(20) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
     `price` FLOAT NOT NULL,
     `stock` INT NOT NULL,
     `description` TEXT NOT NULL,
+    `type` INT NOT NULL,
     PRIMARY KEY (`idarticle`)
 ) ENGINE = InnoDB;
 
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
     `idorder` INT NOT NULL AUTO_INCREMENT,
     `dateorder` TIMESTAMP NOT NULL,
     `IDuser` INT NOT NULL,
+    `shipment` INT NOT NULL, 
     PRIMARY KEY (`idorder`), 
     FOREIGN KEY (`IDuser`) REFERENCES `users`(`IDuser`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
