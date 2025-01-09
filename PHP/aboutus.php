@@ -20,19 +20,12 @@ include 'dependences_php/headImport.php';
 
     <div class="col">
         
-    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-        <button type="button" class="btn btn-primary">About us</button>
-        <button type="button" class="btn btn-primary">Privacy policy and terms and conditions</button>
-        <button type="button" class="btn btn-primary">Privacy and coockie policy</button>
-    </div>
-
 
     </div>
     <div class="coll">
 
 
-          
-                
+     
     <div class="grid text-center" style="--bs-rows: 3; --bs-columns: 3">
 
     <div class="g-start-2" style="grid-row: 2">
@@ -67,6 +60,11 @@ include 'dependences_php/headImport.php';
 
 
 <p>At UrbanKicks, we bring the streets to your feet. Our passion for urban style drives us to curate the latest and most unique footwear collections, blending comfort, quality, and edge. From classic streetwear staples to fresh, innovative designs, our shoes are crafted to keep you moving in style. Whether you’re stepping into the everyday or standing out at night, UrbanKicks is where style meets the street.</p>
+
+
+<br>
+<br>
+
 </div>
 
 
@@ -81,6 +79,7 @@ include 'dependences_php/headImport.php';
 
   </div>
 </div>
+
 
 
 </main>
