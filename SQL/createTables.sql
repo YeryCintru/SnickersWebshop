@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS `users` (
     `password` VARCHAR(255) NOT NULL,
     `first_login` TINYINT(1) DEFAULT 1,          
     `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `twoFactorAuth` VARCHAR(255) NOT NULL,
     `active` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDuser`)
 ) ENGINE = InnoDB;
