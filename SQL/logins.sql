@@ -7,3 +7,7 @@ INSERT INTO logins ('date', 'screenResolution', 'operatingSystem', IDuser)
                         VALUES (2025-01-09 23:46:28, 1680x1120, Windows, 1);
 INSERT INTO logins ('date', 'screenResolution', 'operatingSystem', IDuser) 
                         VALUES (2025-01-09 23:48:03, 1680x1120, Windows, 1);
+INSERT INTO logins ('date', 'screenResolution', 'operatingSystem', IDuser) 
+                        VALUES (2025-01-09 23:49:52, 1680x1120, Windows, 1);
+INSERT INTO logins ('date', 'screenResolution', 'operatingSystem', IDuser) 
+                        VALUES (2025-01-10 11:40:40, 1680x1120, Windows, 2);
