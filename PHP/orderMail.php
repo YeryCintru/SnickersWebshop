@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] == "sendEmail") {
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com'; // SMTP server
       $mail->SMTPAuth = true;
-      $mail->Username = 'webprogammingreut@gmail.com'; // SMTP username
-      $mail->Password = 'jaes owwy dtpr ajlv'; // SMTP password
+      $mail->Username = ''; // SMTP username
+      $mail->Password = ''; // SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption
       $mail->Port = 587; // TCP port
   
